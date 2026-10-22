@@ -1,0 +1,105 @@
+{
+ "tabs": [
+  {
+   "id": "hlbc",
+   "name": "HLBC",
+   "dir": "LR",
+   "nodes": [
+    {
+     "id": "n0",
+     "type": "start",
+     "text": "HLBC Marketing",
+     "s": 0
+    },
+    {
+     "id": "n1",
+     "type": "process",
+     "text": "SEO",
+     "s": 0
+    },
+    {
+     "id": "n2",
+     "type": "process",
+     "text": "Edit the keywords on the website",
+     "s": 0
+    },
+    {
+     "id": "n3",
+     "type": "process",
+     "text": "Submit to listings",
+     "s": 0
+    },
+    {
+     "id": "n4",
+     "type": "process",
+     "text": "Write page titles and meta descriptions",
+     "s": 0
+    },
+    {
+     "id": "n5",
+     "type": "process",
+     "text": "Build one page per service",
+     "s": 0
+    },
+    {
+     "id": "n6",
+     "type": "process",
+     "text": "Publish blog posts / guides",
+     "s": 0
+    }
+   ],
+   "edges": [
+    {
+     "id": "e0",
+     "from": "n0",
+     "to": "n1",
+     "label": ""
+    },
+    {
+     "id": "e1",
+     "from": "n1",
+     "to": "n2",
+     "label": ""
+    },
+    {
+     "id": "e2",
+     "from": "n2",
+     "to": "n3",
+     "label": ""
+    },
+    {
+     "id": "e3",
+     "from": "n3",
+     "to": "n4",
+     "label": ""
+    },
+    {
+     "id": "e4",
+     "from": "n4",
+     "to": "n5",
+     "label": ""
+    },
+    {
+     "id": "e5",
+     "from": "n5",
+     "to": "n6",
+     "label": ""
+    }
+   ]
+  },
+  {
+   "id": "aatbs",
+   "name": "AATBS",
+   "dir": "LR",
+   "nodes": [],
+   "edges": []
+  },
+  {
+   "id": "sb",
+   "name": "SB",
+   "dir": "LR",
+   "nodes": [],
+   "edges": []
+  }
+ ]
+}

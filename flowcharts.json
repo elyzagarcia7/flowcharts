@@ -20,31 +20,25 @@
     {
      "id": "n2",
      "type": "process",
-     "text": "Edit the keywords on the website",
+     "text": "Submit to listings",
      "s": 0
     },
     {
      "id": "n3",
      "type": "process",
-     "text": "Submit to listings",
+     "text": "Edit the keywords on the website",
      "s": 0
     },
     {
      "id": "n4",
      "type": "process",
-     "text": "Write page titles and meta descriptions",
+     "text": "Build one page per service",
      "s": 0
     },
     {
      "id": "n5",
      "type": "process",
-     "text": "Build one page per service",
-     "s": 0
-    },
-    {
-     "id": "n6",
-     "type": "process",
-     "text": "Publish blog posts / guides",
+     "text": "Write page titles and meta descriptions",
      "s": 0
     }
    ],
@@ -63,7 +57,7 @@
     },
     {
      "id": "e2",
-     "from": "n2",
+     "from": "n1",
      "to": "n3",
      "label": ""
     },
@@ -75,14 +69,8 @@
     },
     {
      "id": "e4",
-     "from": "n4",
+     "from": "n3",
      "to": "n5",
-     "label": ""
-    },
-    {
-     "id": "e5",
-     "from": "n5",
-     "to": "n6",
      "label": ""
     }
    ]

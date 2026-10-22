@@ -27,7 +27,7 @@ h3{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.04em;c
 #cv{width:100%;height:100%;display:block;touch-action:none;user-select:none;cursor:grab}
 #hint{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:var(--mut);text-align:center;gap:8px;font-size:17px}
 #zoom{position:absolute;right:14px;bottom:14px;display:flex;gap:4px;align-items:center;background:#fff;padding:5px;border-radius:8px;border:1px solid var(--bd);box-shadow:0 2px 8px rgba(15,23,42,.15)}
-#zoom span{min-width:46px;text-align:center;font-size:13px}
+#zoom span{min-width:46px;text-align:center;font-size:13px}#zoom button.on{background:#dbeafe;border-color:var(--ac)}#nc{position:absolute;top:14px;right:14px;width:min(380px,calc(100% - 28px));background:#fff;border:1px solid var(--bd);border-radius:10px;padding:12px 14px;box-shadow:0 4px 16px rgba(15,23,42,.2);display:none;white-space:pre-wrap;line-height:1.5;max-height:60%;overflow:auto}#nc b{display:block;margin-bottom:4px}#nc small{display:block;color:var(--mut);margin-bottom:6px}#nc a{color:var(--ac)}
 #legend{position:absolute;left:14px;bottom:14px;display:flex;gap:12px;background:#fff;padding:7px 12px;border-radius:8px;border:1px solid var(--bd);font-size:13px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(15,23,42,.15)}
 #legend b{display:inline-block;width:16px;height:16px;border-radius:50%;color:#fff;font-size:11px;text-align:center;line-height:16px;margin-right:5px}
 .f{display:block;margin-bottom:12px}.f>span{display:block;font-size:12px;color:var(--mut);margin-bottom:3px}
@@ -40,7 +40,7 @@ dialog{border:1px solid var(--bd);border-radius:10px;max-width:480px;width:92%}
 @media(max-width:900px){body{grid-template-columns:1fr;grid-template-rows:auto auto 1fr auto auto;grid-template-areas:"top" "tabs" "cv" "lib" "pr";overflow:auto}#lib,#pr{border:0;border-top:1px solid var(--bd)}}
 </style></head><body>
 <div id="top"><span class="brand">&#9707; Flowchart</span><span id="st"></span><span style="flex:1"></span>
-<span id="eb"><button onclick="openCfg()">⚙ GitHub settings</button><button class="pri" onclick="save()">💾 Save to GitHub</button></span>
+<span id="eb"><button id="sv" class="pri" onclick="svClick()">🔑 Turn on saving</button><button onclick="openCfg()" title="Saving settings">⚙</button></span>
 <button id="bEdit" class="pri">✏️ Edit</button></div>
 <div id="tabs"></div>
 <div id="lib"><h3>Add a shape</h3><div id="shapes"></div>
@@ -51,20 +51,24 @@ dialog{border:1px solid var(--bd);border-radius:10px;max-width:480px;width:92%}
 <h3>This flowchart</h3><div class="two"><button onclick="renameTab()">Rename</button><button class="dng" onclick="delTab()">Delete</button></div>
 <button class="full dng" onclick="clearAll()">Clear all shapes</button></div>
 <div id="cvw"><svg id="cv" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#475569"/></marker><marker id="arrS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker></defs><g id="g"></g></svg>
-<div id="hint"></div>
+<div id="hint"></div><div id="nc"></div>
 <div id="legend"><span><b style="background:#f59e0b">…</b>In progress</span><span><b style="background:#16a34a">✓</b>Done</span><span><b style="background:#dc2626">!</b>Blocked</span></div>
-<div id="zoom"><button onclick="zoomBy(1/1.2)">−</button><span id="zl">100%</span><button onclick="zoomBy(1.2)">+</button><button onclick="fitView()">Fit</button></div></div>
+<div id="zoom"><button onclick="zoomBy(1/1.2)">−</button><span id="zl">100%</span><button onclick="zoomBy(1.2)">+</button><button id="fitb" class="on" onclick="fitView()" title="Fit everything on screen, and keep it fitted as you edit">Fit</button></div></div>
 <div id="pr"></div>
 <div id="msg"></div>
-<dialog id="dlg"><h3>GitHub save settings</h3><p class="mut">Only needed to SAVE. Stored in this browser only. Viewers never need it.</p>
-<label class="f"><span>Owner (GitHub username)</span><input id="co"></label><label class="f"><span>Repository name</span><input id="cr"></label><label class="f"><span>Branch</span><input id="cb"></label>
-<label class="f"><span>Personal access token (fine-grained, this repo only, Contents: Read and write)</span><input id="ct" type="password"></label>
-<div style="text-align:right"><button onclick="$('#dlg').close()">Cancel</button> <button class="pri" onclick="cfgSave()">Save settings</button></div></dialog>
+<dialog id="dlg"><h3>Turn on saving (one time only)</h3>
+<p class="mut">After this, every change you make saves by itself. There is nothing else to click.</p>
+<ol class="mut" style="padding-left:20px;margin:0 0 12px"><li style="margin-bottom:6px"><a id="tk" target="_blank" rel="noopener" style="color:var(--ac);font-weight:600">Open GitHub to create your key</a> (opens in a new tab).</li>
+<li style="margin-bottom:6px">On that page, choose <b>Only select repositories</b>, pick <b>flowcharts</b>, then click <b>Generate token</b>.</li>
+<li>Copy the long code GitHub shows and paste it below.</li></ol>
+<label class="f"><input id="ct" type="password" placeholder="Paste your token here" oninput="tkTest()"></label><div id="tr" class="mut" style="margin-bottom:8px"></div>
+<details><summary class="mut" style="cursor:pointer">Advanced</summary><label class="f"><span>Owner</span><input id="co"></label><label class="f"><span>Repository</span><input id="cr"></label><label class="f"><span>Branch</span><input id="cb"></label></details>
+<div style="text-align:right;margin-top:10px"><button onclick="$('#dlg').close()">Close</button> <button class="pri" onclick="cfgSave()">Turn on auto-save</button></div></dialog>
 <script>
 const $=s=>document.querySelector(s),FS=16;
 const DEF={start:{fill:'#dcfce7',stroke:'#16a34a',w:180,h:64,t:'Start',n:'Start'},process:{fill:'#dbeafe',stroke:'#2563eb',w:210,h:80,t:'Step',n:'Step'},decision:{fill:'#fef9c3',stroke:'#ca8a04',w:240,h:130,t:'Question?',n:'Decision'},end:{fill:'#fee2e2',stroke:'#dc2626',w:180,h:64,t:'End',n:'End'}};
 const SC=['','#f59e0b','#16a34a','#dc2626'],SG=['','…','✓','!'],SN=['Not started','In progress','Done','Blocked'];
-let D,cur,sel=null,selE=null,edit=false,dirty=false,hist=[],hi=-1,view={x:40,y:40,k:1},tmp='',drag=null,N=0;
+let D,cur,sel=null,selE=null,edit=false,dirty=false,hist=[],hi=-1,view={x:40,y:40,k:1},tmp='',drag=null,AF=true;
 const uid=()=>Math.random().toString(36).slice(2,9),T=()=>D.tabs.find(t=>t.id==cur)||D.tabs[0],G=id=>T().nodes.find(n=>n.id===id),snap=v=>Math.round(v/10)*10;
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const wrap=(s,c)=>{const o=[];String(s).split('\n').forEach(p=>{let l='';p.split(/\s+/).forEach(w=>{if(l&&(l+' '+w).length>c){o.push(l);l=w}else l=l?l+' '+w:w});o.push(l)});return o};
@@ -83,21 +87,17 @@ const L=[];t.nodes.forEach(n=>(L[lv[n.id]]=L[lv[n.id]]||[]).push(n));const tb=t.
 L.filter(Boolean).forEach(g=>{const ext=Math.max(...g.map(n=>tb?n.h:n.w)),tot=g.reduce((s,n)=>s+(tb?n.w:n.h),0)+(g.length-1)*60;let c=-tot/2;
 g.forEach(n=>{if(tb){n.x=c;n.y=p+(ext-n.h)/2;c+=n.w+60}else{n.x=p+(ext-n.w)/2;n.y=c;c+=n.h+60}});p+=ext+(tb?90:110)});
 const x0=Math.min(...t.nodes.map(n=>n.x)),y0=Math.min(...t.nodes.map(n=>n.y));t.nodes.forEach(n=>{n.x=snap(n.x-x0+60);n.y=snap(n.y-y0+60)})}
-function mkTab(name,steps,extra){const t={id:uid(),name,dir:'LR',nodes:[],edges:[]};steps.forEach((s,i)=>{const n=mkNode(s[1]||'process',s[0]);n.id='n'+i;t.nodes.push(n)});
-for(let i=0;i<steps.length-1;i++)t.edges.push({id:'e'+i,from:'n'+i,to:'n'+(i+1),label:steps[i][1]=='decision'?'Yes':''});
-(extra||[]).forEach((x,i)=>t.edges.push({id:'x'+i,from:'n'+x[0],to:'n'+x[1],label:x[2]}));arrange(t);return t}
-function defaults(){return{v:3,tabs:[
-mkTab('HLBC',[['Client enquiry','start'],['Fact find / documents'],['Choose lender & product'],['Submit application'],['Approved?','decision'],['Formal approval'],['Settlement'],['Follow-up','end']],[[4,2,'No']]),
-mkTab('AATBS',[['Client enquiry','start'],['Engagement & onboarding'],['Collect documents'],['Prepare work'],['Review OK?','decision'],['Lodge / deliver'],['Invoice'],['Complete','end']],[[4,3,'No']]),
-mkTab('SB',[['Customer enquiry','start'],['Quote'],['Quote accepted?','decision'],['Artwork / specs'],['Place order'],['Production'],['Delivery'],['Invoice & follow-up','end']],[[2,1,'Revise']])]}}
+function defaults(){const n=(id,type,text)=>{const x=mkNode(type,text);x.id=id;return x},e=(id,a,b)=>({id,from:a,to:b,label:''});
+const h={id:uid(),name:'HLBC',dir:'LR',nodes:[n('n0','start','HLBC Marketing'),n('n1','process','SEO'),n('n2','process','Submit to listings'),n('n3','process','Edit the keywords on the website'),n('n4','process','Build one page per service'),n('n5','process','Write page titles and meta descriptions')],edges:[e('e0','n0','n1'),e('e1','n1','n2'),e('e2','n1','n3'),e('e3','n3','n4'),e('e4','n3','n5')]};
+arrange(h);return{v:3,tabs:[h,{id:uid(),name:'AATBS',dir:'LR',nodes:[],edges:[]},{id:uid(),name:'SB',dir:'LR',nodes:[],edges:[]}]}}
 function prep(){D.tabs.forEach(t=>{t.dir=t.dir=='v'?'TB':t.dir=='h'||!t.dir?'LR':t.dir;
 t.edges.forEach(e=>{if(e.a){e.from=e.a;e.to=e.b;e.label=e.l||'';delete e.a;delete e.b;delete e.l}});
 t.nodes.forEach(n=>{if(n.k){const inc=t.edges.some(e=>e.to==n.id);n.type=n.k=='dec'?'decision':n.k=='term'?(inc?'end':'start'):'process';n.text=n.t;delete n.k;delete n.t}n.s=n.s||0;size(n)})});
 if(D.v!==3){D.tabs.forEach(arrange);D.v=3}}
 /* ---------- history / storage ---------- */
-function commit(){const j=JSON.stringify(D);if(hist[hi]===j)return;hist.length=hi+1;hist.push(j);if(hist.length>100)hist.shift();hi=hist.length-1;dirty=true;try{localStorage.setItem('fc_draft',j)}catch(e){}$('#st').textContent='● Unsaved changes'}
-function draft(){dirty=true;$('#st').textContent='● Unsaved changes';try{localStorage.setItem('fc_draft',JSON.stringify(D))}catch(e){}}
-function restore(){D=JSON.parse(hist[hi]);if(!D.tabs.some(t=>t.id==cur))cur=D.tabs[0].id;if(sel&&!G(sel))sel=null;dirty=true;full()}
+function commit(){const j=JSON.stringify(D);if(hist[hi]===j)return;hist.length=hi+1;hist.push(j);if(hist.length>100)hist.shift();hi=hist.length-1;dirty=true;try{localStorage.setItem('fc_draft',j)}catch(e){}$('#st').textContent='● Unsaved changes';queueSave()}
+function draft(){dirty=true;$('#st').textContent='● Unsaved changes';try{localStorage.setItem('fc_draft',JSON.stringify(D))}catch(e){}queueSave()}
+function restore(){D=JSON.parse(hist[hi]);if(!D.tabs.some(t=>t.id==cur))cur=D.tabs[0].id;if(sel&&!G(sel))sel=null;dirty=true;queueSave();full()}
 function undo(){if(hi>0){hi--;restore()}}function redo(){if(hi<hist.length-1){hi++;restore()}}
 function toast(t){const m=$('#msg');m.textContent=t;m.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>m.style.display='none',4500)}
 /* ---------- drawing ---------- */
@@ -114,35 +114,39 @@ if(n.type=='decision')s=`<polygon points="${cx},${y} ${x+w},${cy} ${cx},${y+h} $
 const dec=n.type=='decision',L=wrap(n.text,Math.max(6,Math.floor((d.w-(dec?110:34))/(FS*.55))));
 s+=L.map((l,i)=>`<text x="${cx}" y="${cy+(i-(L.length-1)/2)*FS*1.3}" text-anchor="middle" dominant-baseline="central" font-family="system-ui,Arial,sans-serif" font-size="${FS}" font-weight="600" fill="#0f172a">${esc(l)}</text>`).join('');
 if(n.s){const bx=dec?x+w*.78:x+w-6,by=dec?y+h*.22:y+6;s+=`<circle cx="${bx}" cy="${by}" r="13" fill="${SC[n.s]}" stroke="#fff" stroke-width="2"/><text x="${bx}" y="${by}" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="700" fill="#fff">${SG[n.s]}</text>`}
+if(n.note){const mx=dec?x+w*.76:x+w-6,my=dec?y+h*.76:y+h-6;s+=`<circle cx="${mx}" cy="${my}" r="11" fill="#fde047" stroke="#ca8a04" stroke-width="2"/><text x="${mx}" y="${my}" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="700" fill="#713f12">i</text>`}
 return`<g data-n="${n.id}"${edit?' style="cursor:move"':''}>${s}</g>`}
 function selSVG(n){const{x,y,w,h}=n,hs=[[x+w/2,y],[x+w,y+h/2],[x+w/2,y+h],[x,y+h/2]];
 return`<rect x="${x-8}" y="${y-8}" width="${w+16}" height="${h+16}" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 4" pointer-events="none"/>`+hs.map(q=>`<circle data-h="${n.id}" cx="${q[0]}" cy="${q[1]}" r="8" fill="#fff" stroke="#2563eb" stroke-width="3" style="cursor:crosshair"/>`).join('')}
 function render(){const t=T();let h=t.edges.map(e=>edgeSVG(e,e.id===selE)).join('')+t.nodes.map(nodeSVG).join('');if(edit&&sel&&G(sel))h+=selSVG(G(sel));h+=tmp;
-$('#g').innerHTML=h;$('#g').setAttribute('transform',`translate(${view.x} ${view.y}) scale(${view.k})`);$('#zl').textContent=Math.round(view.k*100)+'%';
+$('#g').innerHTML=h;$('#g').setAttribute('transform',`translate(${view.x} ${view.y}) scale(${view.k})`);$('#zl').textContent=Math.round(view.k*100)+'%';$('#fitb').classList.toggle('on',AF);
 const hn=$('#hint');hn.style.display=t.nodes.length?'none':'flex';hn.innerHTML=edit?'<b>This flowchart is empty</b>Click a shape on the left to begin':'<b>This flowchart is empty</b>'}
 function bounds(){const t=T();if(!t.nodes.length)return{x:0,y:0,w:100,h:100};const x0=Math.min(...t.nodes.map(n=>n.x)),y0=Math.min(...t.nodes.map(n=>n.y));return{x:x0,y:y0,w:Math.max(...t.nodes.map(n=>n.x+n.w))-x0,h:Math.max(...t.nodes.map(n=>n.y+n.h))-y0+60}}
-function zoomBy(f,cx,cy){const c=$('#cv');cx=cx??c.clientWidth/2;cy=cy??c.clientHeight/2;const k=Math.min(3,Math.max(.2,view.k*f));view.x=cx-(cx-view.x)*k/view.k;view.y=cy-(cy-view.y)*k/view.k;view.k=k;render()}
-function fitView(){const c=$('#cv'),b=bounds(),fk=Math.min((c.clientWidth-80)/b.w,(c.clientHeight-80)/b.h),k=Math.max(.6,Math.min(1.3,fk));view.k=k;
-view.x=b.w*k+80<c.clientWidth?(c.clientWidth-b.w*k)/2-b.x*k:40-b.x*k;view.y=b.h*k+80<c.clientHeight?(c.clientHeight-b.h*k)/2-b.y*k:40-b.y*k;render()}
+function zoomBy(f,cx,cy){AF=false;const c=$('#cv');cx=cx??c.clientWidth/2;cy=cy??c.clientHeight/2;const k=Math.min(3,Math.max(.05,view.k*f));view.x=cx-(cx-view.x)*k/view.k;view.y=cy-(cy-view.y)*k/view.k;view.k=k;render()}
+function fitNow(){const c=$('#cv'),b=bounds(),pad=70,k=Math.min(1.5,(c.clientWidth-2*pad)/b.w,(c.clientHeight-2*pad)/b.h);view.k=Math.max(.05,k);
+view.x=(c.clientWidth-b.w*view.k)/2-b.x*view.k;view.y=(c.clientHeight-b.h*view.k)/2-b.y*view.k;render()}
+function fitView(){AF=true;fitNow()}
+function needsFit(){const c=$('#cv'),b=bounds(),k=view.k;return b.x*k+view.x<20||b.y*k+view.y<20||(b.x+b.w)*k+view.x>c.clientWidth-20||(b.y+b.h)*k+view.y>c.clientHeight-20}
 const wpt=e=>{const r=$('#cv').getBoundingClientRect();return{x:(e.clientX-r.left-view.x)/view.k,y:(e.clientY-r.top-view.y)/view.k}};
 /* ---------- selection & events ---------- */
 function select(id){sel=id;selE=null;panel();render()}function selectEdge(id){sel=null;selE=id;panel();render()}
 const cv=$('#cv');
 cv.addEventListener('pointerdown',e=>{const t=e.target,hd=t.closest('[data-h]'),nd=t.closest('[data-n]'),ed=t.closest('[data-e]'),p=wpt(e);
+if(!edit){if(nd){showCard(G(nd.dataset.n));return}hideCard()}
 if(edit){if(hd){drag={k:'conn',id:hd.dataset.h};return}
 if(nd){const n=G(nd.dataset.n);select(n.id);drag={k:'move',id:n.id,ox:p.x-n.x,oy:p.y-n.y,moved:false};return}
 if(ed){selectEdge(ed.dataset.e);return}if(sel||selE)select(null)}
 drag={k:'pan',sx:e.clientX,sy:e.clientY,vx:view.x,vy:view.y}});
 addEventListener('pointermove',e=>{if(!drag)return;const p=wpt(e);
-if(drag.k=='move'){const n=G(drag.id);n.x=Math.max(0,snap(p.x-drag.ox));n.y=Math.max(0,snap(p.y-drag.oy));drag.moved=true;render()}
-else if(drag.k=='pan'){view.x=drag.vx+e.clientX-drag.sx;view.y=drag.vy+e.clientY-drag.sy;render()}
+if(drag.k=='move'){const n=G(drag.id);n.x=snap(p.x-drag.ox);n.y=snap(p.y-drag.oy);drag.moved=true;render()}
+else if(drag.k=='pan'){AF=false;view.x=drag.vx+e.clientX-drag.sx;view.y=drag.vy+e.clientY-drag.sy;render()}
 else if(drag.k=='conn'){const n=G(drag.id);tmp=`<line x1="${n.x+n.w/2}" y1="${n.y+n.h/2}" x2="${p.x}" y2="${p.y}" stroke="#2563eb" stroke-width="3" stroke-dasharray="7 5" pointer-events="none"/>`;render()}});
 addEventListener('pointerup',e=>{if(!drag)return;
-if(drag.k=='move'&&drag.moved)commit();
+if(drag.k=='move'&&drag.moved){commit();if(AF&&needsFit())fitNow()}
 if(drag.k=='conn'){const t=document.elementFromPoint(e.clientX,e.clientY),nd=t&&t.closest&&t.closest('[data-n]');if(nd&&nd.dataset.n!==drag.id&&addEdge(drag.id,nd.dataset.n)){commit();panel()}}
 tmp='';drag=null;render()});
 cv.addEventListener('dblclick',e=>{if(!edit)return;const nd=e.target.closest('[data-n]');if(nd){select(nd.dataset.n);const t=$('#ptext');if(t){t.focus();t.select()}}});
-cv.addEventListener('wheel',e=>{e.preventDefault();if(e.ctrlKey||e.metaKey){const r=cv.getBoundingClientRect();zoomBy(e.deltaY<0?1.1:1/1.1,e.clientX-r.left,e.clientY-r.top)}else{view.x-=e.deltaX;view.y-=e.deltaY;render()}},{passive:false});
+cv.addEventListener('wheel',e=>{e.preventDefault();if(e.ctrlKey||e.metaKey){const r=cv.getBoundingClientRect();zoomBy(e.deltaY<0?1.1:1/1.1,e.clientX-r.left,e.clientY-r.top)}else{AF=false;view.x-=e.deltaX;view.y-=e.deltaY;render()}},{passive:false});
 cv.addEventListener('dragover',e=>e.preventDefault());
 cv.addEventListener('drop',e=>{e.preventDefault();const t=e.dataTransfer.getData('text/plain');if(DEF[t]&&edit)addShape(t,wpt(e))});
 addEventListener('keydown',e=>{if(!edit||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;const c=e.ctrlKey||e.metaKey,k=e.key.toLowerCase();
@@ -154,8 +158,8 @@ else if(s){const k=t.edges.filter(e=>e.from==s.id).length,o=k?(k%2?1:-1)*Math.ce
 if(tb){n.x=snap(s.x+(s.w-n.w)/2+o*(n.w+60));n.y=snap(s.y+s.h+90)}else{n.x=snap(s.x+s.w+110);n.y=snap(s.y+(s.h-n.h)/2+o*(n.h+60))}}
 else{const c=$('#cv');n.x=snap((c.clientWidth/2-view.x)/view.k-n.w/2);n.y=snap((c.clientHeight/2-view.y)/view.k-n.h/2)}
 for(let i=0;i<40&&t.nodes.some(m=>n.x<m.x+m.w+20&&n.x+n.w+20>m.x&&n.y<m.y+m.h+20&&n.y+n.h+20>m.y);i++){if(tb)n.x+=n.w+40;else n.y+=n.h+40}
-t.nodes.push(n);if(s)addEdge(s.id,n.id);commit();select(n.id);const x=$('#ptext');if(x){x.focus();x.select()}}
-function del(){const t=T();if(sel){t.nodes=t.nodes.filter(n=>n.id!=sel);t.edges=t.edges.filter(e=>e.from!=sel&&e.to!=sel)}else if(selE)t.edges=t.edges.filter(e=>e.id!=selE);else return;sel=selE=null;commit();panel();render()}
+t.nodes.push(n);if(s)addEdge(s.id,n.id);commit();select(n.id);if(AF)fitNow();const x=$('#ptext');if(x){x.focus();x.select()}}
+function del(){const t=T();if(sel){t.nodes=t.nodes.filter(n=>n.id!=sel);t.edges=t.edges.filter(e=>e.from!=sel&&e.to!=sel)}else if(selE)t.edges=t.edges.filter(e=>e.id!=selE);else return;sel=selE=null;commit();panel();AF?fitNow():render()}
 function setDir(d){const t=T();if(t.dir==d)return;t.dir=d;if(confirm('Re-arrange the shapes to flow '+(d=='TB'?'top to bottom':'left to right')+'?\n(Cancel keeps their current positions)'))arrange(t);commit();full()}
 function autoLayout(){arrange(T());commit();full()}
 function clearAll(){if(confirm('Remove ALL shapes from "'+T().name+'"? (You can press Undo)')){T().nodes=[];T().edges=[];sel=selE=null;commit();full()}}
@@ -169,34 +173,50 @@ function panel(){const p=$('#pr'),n=sel&&G(sel),e=selE&&T().edges.find(x=>x.id==
 if(n)p.innerHTML=`<h3>Selected shape</h3><label class="f"><span>Text</span><textarea id="ptext" rows="3" oninput="txt(this.value)" onchange="commit()">${esc(n.text)}</textarea></label>
 <label class="f"><span>Shape</span><select onchange="setType(this.value)">${Object.keys(DEF).map(k=>`<option value="${k}"${k==n.type?' selected':''}>${DEF[k].n}</option>`).join('')}</select></label>
 <div class="f"><span>Status</span><div class="stg">${SN.map((s,i)=>`<button class="${i==n.s?'on':''}" onclick="setSt(${i})">${s}</button>`).join('')}</div></div>
+<label class="f"><span>Notes (viewers see them when they click the shape)</span><textarea id="pnote" rows="6" placeholder="Details, links, who is responsible, deadlines…" oninput="note(this.value)" onchange="commit()">${esc(n.note||'')}</textarea></label>
 <button class="dng full" onclick="del()">🗑 Delete shape</button>`;
 else if(e)p.innerHTML=`<h3>Selected arrow</h3><label class="f"><span>Label (optional)</span><input id="plabel" value="${esc(e.label)}" oninput="lab(this.value)" onchange="commit()"></label>
 <div class="two"><button onclick="setLab('Yes')">Yes</button><button onclick="setLab('No')">No</button><button onclick="setLab('')">None</button></div><button class="dng full" onclick="del()">🗑 Delete arrow</button>`;
-else p.innerHTML=`<h3>Selected</h3><p class="mut">Click a shape or arrow to edit it.<br><br>• Drag a shape to move it<br>• Double-click a shape to type in it<br>• Drag a blue dot from a shape onto another shape to connect them<br>• Press Delete to remove</p>`;
+else p.innerHTML=`<h3>Selected</h3><p class="mut">Click a shape or arrow to edit it.<br><br>• Drag a shape to move it<br>• Double-click a shape to type in it<br>• Drag a blue dot from a shape onto another shape to connect them<br>• Add notes in the Notes box<br>• Press Delete to remove</p>`;
 $('#dLR').classList.toggle('on',T().dir!='TB');$('#dTB').classList.toggle('on',T().dir=='TB')}
+function note(v){const n=G(sel);n.note=v;draft();render()}
+function showCard(n){const c=$('#nc');if(!n||!n.note){c.style.display='none';return}c.innerHTML=`<b>${esc(n.text)}</b>${n.s?`<small>Status: ${SN[n.s]}</small>`:''}${esc(n.note).replace(/https?:\/\/[^\s<]+/g,u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`)}`;c.style.display='block'}
+function hideCard(){$('#nc').style.display='none'}
 function txt(v){const n=G(sel);n.text=v;size(n);draft();render()}
 function setType(v){const n=G(sel);n.type=v;size(n);commit();panel();render()}
 function setSt(i){G(sel).s=i;commit();panel();render()}
 function lab(v){T().edges.find(e=>e.id==selE).label=v;draft();render()}
 function setLab(v){T().edges.find(e=>e.id==selE).label=v;commit();panel();render()}
-function full(){tabs();panel();fitView()}
+function full(){hideCard();tabs();panel();fitView()}
 $('#shapes').innerHTML=Object.keys(DEF).map(k=>`<button class="shp" draggable="true" ondragstart="event.dataTransfer.setData('text/plain','${k}')" onclick="addShape('${k}')"><i style="background:${DEF[k].fill};border-color:${DEF[k].stroke}${k=='decision'?';transform:rotate(45deg) scale(.8)':k=='process'?'':';border-radius:10px'}"></i>${DEF[k].n}</button>`).join('');
-$('#bEdit').onclick=()=>{edit=!edit;document.body.classList.toggle('edit',edit);$('#bEdit').textContent=edit?'✔ Done editing':'✏️ Edit';sel=selE=null;tabs();panel();setTimeout(fitView,0)};
+$('#bEdit').onclick=()=>{edit=!edit;document.body.classList.toggle('edit',edit);$('#bEdit').textContent=edit?'✔ Done editing':'✏️ Edit';sel=selE=null;hideCard();tabs();panel();setTimeout(fitView,0)};
 /* ---------- GitHub save ---------- */
 function cfg(){let c={};try{c=JSON.parse(localStorage.getItem('fc_cfg')||'{}')}catch(e){}
 if(!c.o)c.o=location.hostname.endsWith('.github.io')?location.hostname.split('.')[0]:'elyzagarcia7';
 if(!c.r)c.r=location.hostname.endsWith('.github.io')?(location.pathname.split('/')[1]||c.o+'.github.io'):'flowcharts';c.b=c.b||'main';return c}
-function openCfg(){const c=cfg();$('#co').value=c.o;$('#cr').value=c.r;$('#cb').value=c.b;$('#ct').value=c.t||'';$('#dlg').showModal()}
-function cfgSave(){localStorage.setItem('fc_cfg',JSON.stringify({o:$('#co').value.trim(),r:$('#cr').value.trim(),b:$('#cb').value.trim()||'main',t:$('#ct').value.trim()}));$('#dlg').close();toast('Settings saved')}
-async function save(){const c=cfg();if(!c.t){openCfg();return toast('Paste your GitHub token first')}
+let sT=0,saving=false,again=false,tT=0;
+const svLabel=()=>{const t=!!cfg().t,b=$('#sv');b.textContent=t?'💾 Save now':'🔑 Turn on saving';b.className=t?'':'pri'};
+function svClick(){cfg().t?save():openCfg()}
+function openCfg(){const c=cfg();$('#co').value=c.o;$('#cr').value=c.r;$('#cb').value=c.b;$('#ct').value=c.t||'';$('#tr').textContent='';
+$('#tk').href='https://github.com/settings/personal-access-tokens/new?name=Flowchart+saver&description='+encodeURIComponent('Lets my flowchart page save changes to the '+c.r+' repo')+'&target_name='+encodeURIComponent(c.o)+'&expires_in=365&contents=write';$('#dlg').showModal()}
+function tkTest(){clearTimeout(tT);const t=$('#ct').value.trim(),r=$('#tr');if(t.length<20){r.textContent='';return}r.textContent='Checking…';
+tT=setTimeout(async()=>{try{const o=$('#co').value.trim(),n=$('#cr').value.trim(),x=await fetch(`https://api.github.com/repos/${o}/${n}`,{headers:{Authorization:'Bearer '+t}});
+r.textContent=x.ok?`✔ Connected to ${o}/${n}`:'✖ That token does not work for '+o+'/'+n+'. Make sure you picked the "flowcharts" repository.'}catch(e){r.textContent='Could not reach GitHub – check your internet.'}},500)}
+function cfgSave(){const t=$('#ct').value.trim();if(!t){$('#tr').textContent='Paste the token first.';return}
+localStorage.setItem('fc_cfg',JSON.stringify({o:$('#co').value.trim(),r:$('#cr').value.trim(),b:$('#cb').value.trim()||'main',t}));$('#dlg').close();svLabel();toast('Auto-save is on ✔');if(dirty)save()}
+function queueSave(){if(!cfg().t){$('#st').textContent='● Not saved yet – click "Turn on saving"';return}clearTimeout(sT);$('#st').textContent='● Saving soon…';sT=setTimeout(save,1500)}
+async function save(){const c=cfg();if(!c.t){openCfg();return}clearTimeout(sT);if(saving){again=true;return}saving=true;$('#st').textContent='Saving…';
 const u=`https://api.github.com/repos/${c.o}/${c.r}/contents/flowcharts.json`,H={Authorization:'Bearer '+c.t,Accept:'application/vnd.github+json'};
-try{D.updated=new Date().toISOString();let sha;const g=await fetch(u+'?ref='+c.b,{headers:H});if(g.ok)sha=(await g.json()).sha;else if(g.status!=404)throw new Error('check token / repo name ('+g.status+')');
-const r=await fetch(u,{method:'PUT',headers:H,body:JSON.stringify({message:'Update flowcharts',branch:c.b,sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(D))))})});
-if(!r.ok)throw new Error('GitHub refused it ('+r.status+'). The token needs Contents: Read and write.');dirty=false;localStorage.removeItem('fc_draft');stamp();toast('Saved ✔ Live for everyone in about a minute')}catch(e){toast('Save failed: '+e.message)}}
+try{D.updated=new Date().toISOString();const body=JSON.stringify(D);let sha;const g=await fetch(u+'?ref='+c.b,{headers:H});if(g.ok)sha=(await g.json()).sha;else if(g.status!=404)throw{st:g.status};
+const r=await fetch(u,{method:'PUT',headers:H,body:JSON.stringify({message:'Update flowcharts',branch:c.b,sha,content:btoa(unescape(encodeURIComponent(body)))})});
+if(!r.ok)throw{st:r.status};if(JSON.stringify(D)==body){dirty=false;localStorage.removeItem('fc_draft')}$('#st').textContent='✔ Saved '+new Date().toLocaleTimeString()}
+catch(e){$('#st').textContent='⚠ Not saved';toast(e.st==401?'GitHub rejected your token. Click ⚙ and create a new one.':e.st==403||e.st==404?'GitHub said no. Click ⚙ and check the token is for the "flowcharts" repo with Contents: Read and write.':'Could not save. Check your internet; it will retry on your next change.')}
+saving=false;if(again){again=false;queueSave()}}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&dirty&&cfg().t&&!saving)save()});
 function stamp(){$('#st').textContent=D.updated?'Last updated '+new Date(D.updated).toLocaleString():''}
 addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
-addEventListener('resize',()=>render());
+addEventListener('resize',()=>AF?fitNow():render());
 (async()=>{try{const r=await fetch('flowcharts.json?'+Date.now());D=r.ok?await r.json():defaults()}catch(e){D=defaults()}
 try{const d=localStorage.getItem('fc_draft');if(d&&confirm('You have unsaved changes from earlier on this device. Restore them?')){D=JSON.parse(d);dirty=true}else localStorage.removeItem('fc_draft')}catch(e){}
-prep();hist=[JSON.stringify(D)];hi=0;cur=D.tabs[0].id;if(dirty)$('#st').textContent='● Unsaved changes';else stamp();tabs();panel();fitView()})();
+prep();hist=[JSON.stringify(D)];hi=0;cur=D.tabs[0].id;if(dirty)$('#st').textContent='● Unsaved changes';else stamp();svLabel();tabs();panel();fitView()})();
 </script></body></html>

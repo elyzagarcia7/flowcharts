@@ -1,120 +1,202 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8"><title>Flowchart</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Company Flowcharts – HLBC · AATBS · SB</title>
 <style>
-:root{--ink:#1c2733;--mut:#6b7785;--line:#d5dce4;--bg:#f4f6f9;--ac:#005EA2;--gold:#C9A961}
-*{box-sizing:border-box}body{margin:0;font:14px/1.4 system-ui,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg);height:100vh;display:flex;flex-direction:column}
-header{background:var(--ac);color:#fff;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--gold)}
-header h1{font-size:16px;margin:0;flex:1}
-button,select{font:inherit;padding:5px 10px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer;color:var(--ink)}
-button:hover{background:#eef3f8}button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
-header button{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4)}
-#tabs{display:flex;gap:2px;padding:6px 10px 0;background:#e6ebf1;overflow-x:auto;border-bottom:1px solid var(--line)}
-.tab{padding:7px 14px;border-radius:8px 8px 0 0;background:#d6dde6;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
-.tab.on{background:#fff;font-weight:600}.tab.add{background:none;font-weight:700;color:var(--ac)}
-#bar{display:none;gap:6px;padding:7px 10px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
-body.edit #bar{display:flex}
-#bar .sep{width:1px;height:22px;background:var(--line)}
-#legend{padding:5px 12px;font-size:12px;color:var(--mut);display:flex;gap:14px;flex-wrap:wrap;background:#fff}
-#legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
-#wrap{flex:1;overflow:auto;position:relative}
-#cv{position:relative;width:2600px;height:1800px;background-image:radial-gradient(#cbd3dd 1px,transparent 1px);background-size:22px 22px}
-svg{position:absolute;inset:0;width:100%;height:100%}
-.n{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 10px;border:2px solid;font-size:13px;user-select:none;touch-action:none;background:#fff;cursor:default}
-body.edit .n{cursor:grab}.n.step{width:170px;height:62px;border-radius:8px}
-.n.term{width:150px;height:50px;border-radius:30px}.n.dec{width:170px;height:84px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:0;padding:6px 34px;box-shadow:none}
-.n.sel{outline:3px solid var(--gold);outline-offset:2px}.n.dec.sel{outline:0;filter:drop-shadow(0 0 4px var(--gold)) drop-shadow(0 0 4px var(--gold))}
-.s0{border-color:#9aa5b1;background:#f3f5f7}.s1{border-color:#e0a100;background:#fff4d0}.s2{border-color:#2e9d5b;background:#dcf3e5}.s3{border-color:#d64545;background:#fde0e0}
-.n.dec.s0{background:#dfe4ea}.n.dec.s1{background:#f6dc8c}.n.dec.s2{background:#a9e0c0}.n.dec.s3{background:#f5b3b3}
-.e{stroke:#51606f;stroke-width:2;fill:none}.e.sel{stroke:var(--gold);stroke-width:3.5}.hit{stroke:transparent;stroke-width:14;fill:none}
-body.edit .hit{cursor:pointer}.el{font-size:12px;fill:#334;paint-order:stroke;stroke:#fff;stroke-width:4px}
-#msg{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#1c2733;color:#fff;padding:8px 16px;border-radius:8px;display:none}
-dialog{border:1px solid var(--line);border-radius:10px;max-width:480px;width:92%}dialog label{display:block;margin:8px 0 2px;font-size:12px;color:var(--mut)}dialog input{width:100%;padding:6px;border:1px solid var(--line);border-radius:6px}
+:root{--bd:#e2e8f0;--tx:#0f172a;--mut:#64748b;--ac:#2563eb}
+*{box-sizing:border-box}
+body{margin:0;height:100vh;font:15px system-ui,"Segoe UI",Arial,sans-serif;color:var(--tx);background:#f1f5f9;display:grid;grid-template-rows:auto auto 1fr;grid-template-columns:240px 1fr 290px;grid-template-areas:"top top top" "tabs tabs tabs" "lib cv pr";overflow:hidden}
+body:not(.edit){grid-template-columns:1fr;grid-template-areas:"top" "tabs" "cv"}
+body:not(.edit) #lib,body:not(.edit) #pr{display:none}
+button,select,input,textarea{font:inherit}
+button{padding:8px 12px;border:1px solid var(--bd);background:#fff;border-radius:6px;cursor:pointer;color:var(--tx)}
+button:hover{background:#eef2f7}button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}button.pri:hover{background:#1d4ed8}
+button.on{background:#dbeafe;border-color:var(--ac)}button.dng{color:#b91c1c}
+#top{grid-area:top;display:flex;gap:10px;align-items:center;padding:9px 14px;background:#fff;border-bottom:1px solid var(--bd)}
+.brand{font-weight:700;font-size:18px}#st{color:var(--mut);font-size:13px}
+#eb{display:none;gap:8px}body.edit #eb{display:flex}
+#tabs{grid-area:tabs;display:flex;gap:4px;padding:6px 14px 0;background:#fff;border-bottom:1px solid var(--bd);overflow-x:auto}
+.tab{padding:9px 18px;cursor:pointer;border-bottom:3px solid transparent;font-weight:600;color:var(--mut);white-space:nowrap}
+.tab.on{color:var(--ac);border-bottom-color:var(--ac)}.tab.add{color:var(--ac)}
+#lib,#pr{background:#fff;padding:14px;overflow:auto}#lib{grid-area:lib;border-right:1px solid var(--bd)}#pr{grid-area:pr;border-left:1px solid var(--bd)}
+h3{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}#lib h3:not(:first-child){margin-top:18px}
+.shp{display:flex;align-items:center;gap:10px;width:100%;margin-bottom:6px;text-align:left;cursor:grab;font-weight:600}
+.shp i{width:26px;height:18px;border:2px solid;border-radius:4px;flex-shrink:0}
+.mut{color:var(--mut);font-size:13px;line-height:1.5}
+.two{display:flex;gap:6px;margin-bottom:6px}.two button{flex:1;padding:8px 4px}.full{width:100%;margin-bottom:6px}
+#cvw{grid-area:cv;position:relative;overflow:hidden;min-height:50vh;background:#f8fafc;background-image:radial-gradient(#cbd5e1 1px,transparent 1px);background-size:20px 20px}
+#cv{width:100%;height:100%;display:block;touch-action:none;user-select:none;cursor:grab}
+#hint{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:var(--mut);text-align:center;gap:8px;font-size:17px}
+#zoom{position:absolute;right:14px;bottom:14px;display:flex;gap:4px;align-items:center;background:#fff;padding:5px;border-radius:8px;border:1px solid var(--bd);box-shadow:0 2px 8px rgba(15,23,42,.15)}
+#zoom span{min-width:46px;text-align:center;font-size:13px}
+#legend{position:absolute;left:14px;bottom:14px;display:flex;gap:12px;background:#fff;padding:7px 12px;border-radius:8px;border:1px solid var(--bd);font-size:13px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(15,23,42,.15)}
+#legend b{display:inline-block;width:16px;height:16px;border-radius:50%;color:#fff;font-size:11px;text-align:center;line-height:16px;margin-right:5px}
+.f{display:block;margin-bottom:12px}.f>span{display:block;font-size:12px;color:var(--mut);margin-bottom:3px}
+.f input,.f select,.f textarea{width:100%;padding:8px;border:1px solid var(--bd);border-radius:6px;font-size:15px}
+.f textarea:focus,.f input:focus{outline:2px solid #93c5fd;border-color:var(--ac)}
+.stg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.stg button{padding:8px 4px;font-weight:600;font-size:13px}.stg button.on{box-shadow:0 0 0 3px #93c5fd;border-color:var(--ac)}
+#msg{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 18px;border-radius:8px;display:none;z-index:9}
+dialog{border:1px solid var(--bd);border-radius:10px;max-width:480px;width:92%}
+@media(max-width:900px){body{grid-template-columns:1fr;grid-template-rows:auto auto 1fr auto auto;grid-template-areas:"top" "tabs" "cv" "lib" "pr";overflow:auto}#lib,#pr{border:0;border-top:1px solid var(--bd)}}
 </style></head><body>
-<header><h1>Company Flowcharts <small style="opacity:.8;font-weight:400" id="stamp"></small></h1>
-<button id="bEdit">✏️ Edit</button></header>
+<div id="top"><span class="brand">&#9707; Flowchart</span><span id="st"></span><span style="flex:1"></span>
+<span id="eb"><button onclick="openCfg()">⚙ GitHub settings</button><button class="pri" onclick="save()">💾 Save to GitHub</button></span>
+<button id="bEdit" class="pri">✏️ Edit</button></div>
 <div id="tabs"></div>
-<div id="bar">
-<button onclick="add('step')">+ Step</button><button onclick="add('dec')">+ Decision</button><button onclick="add('term')">+ Start/End</button>
-<span class="sep"></span><button id="bConn" onclick="connect()">🔗 Connect</button><button onclick="editText()">Edit text</button>
-<select id="st" onchange="setStatus(this.value)" title="Status"><option value="0">Not started</option><option value="1">In progress</option><option value="2">Done</option><option value="3">Blocked</option></select>
-<button onclick="del()">🗑 Delete</button><span class="sep"></span>
-<button onclick="renameTab()">Rename tab</button><button onclick="delTab()">Delete tab</button><span class="sep"></span>
-<button class="p" onclick="save()">💾 Save to GitHub</button><button onclick="$('dlg').showModal()">⚙ Settings</button>
-<button onclick="exp()">Export</button><button onclick="$('imp').click()">Import</button><input type="file" id="imp" accept=".json" hidden>
-</div>
-<div id="legend"><span><i style="background:#9aa5b1"></i>Not started</span><span><i style="background:#e0a100"></i>In progress</span><span><i style="background:#2e9d5b"></i>Done</span><span><i style="background:#d64545"></i>Blocked</span><span id="hint"></span></div>
-<div id="wrap"><div id="cv"><svg id="svg"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#51606f"/></marker></defs><g id="eg"></g></svg></div></div>
+<div id="lib"><h3>Add a shape</h3><div id="shapes"></div>
+<p class="mut">Select a shape first and the new one is added after it, already connected. Click empty space to deselect. You can also drag a shape onto the page.</p>
+<h3>Flow direction</h3><div class="two"><button id="dLR" onclick="setDir('LR')">↔ Left to right</button><button id="dTB" onclick="setDir('TB')">↕ Top to bottom</button></div>
+<button class="full" onclick="autoLayout()">Auto-arrange</button>
+<h3>Undo</h3><div class="two"><button onclick="undo()">↶ Undo</button><button onclick="redo()">Redo ↷</button></div>
+<h3>This flowchart</h3><div class="two"><button onclick="renameTab()">Rename</button><button class="dng" onclick="delTab()">Delete</button></div>
+<button class="full dng" onclick="clearAll()">Clear all shapes</button></div>
+<div id="cvw"><svg id="cv" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#475569"/></marker><marker id="arrS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker></defs><g id="g"></g></svg>
+<div id="hint"></div>
+<div id="legend"><span><b style="background:#f59e0b">…</b>In progress</span><span><b style="background:#16a34a">✓</b>Done</span><span><b style="background:#dc2626">!</b>Blocked</span></div>
+<div id="zoom"><button onclick="zoomBy(1/1.2)">−</button><span id="zl">100%</span><button onclick="zoomBy(1.2)">+</button><button onclick="fitView()">Fit</button></div></div>
+<div id="pr"></div>
 <div id="msg"></div>
-<dialog id="dlg"><h3 style="margin-top:0">GitHub save settings</h3>
-<p style="font-size:12px;color:var(--mut)">Only needed to SAVE. Stored in this browser only. Viewers never need it.</p>
-<label>Owner (GitHub username)</label><input id="co"><label>Repository name</label><input id="cr"><label>Branch</label><input id="cb" value="main">
-<label>Personal access token (fine-grained, this repo, Contents: Read and write)</label><input id="ct" type="password">
-<p style="text-align:right"><button onclick="$('dlg').close()">Cancel</button> <button class="p" onclick="cfgSave()">Save settings</button></p></dialog>
+<dialog id="dlg"><h3>GitHub save settings</h3><p class="mut">Only needed to SAVE. Stored in this browser only. Viewers never need it.</p>
+<label class="f"><span>Owner (GitHub username)</span><input id="co"></label><label class="f"><span>Repository name</span><input id="cr"></label><label class="f"><span>Branch</span><input id="cb"></label>
+<label class="f"><span>Personal access token (fine-grained, this repo only, Contents: Read and write)</span><input id="ct" type="password"></label>
+<div style="text-align:right"><button onclick="$('#dlg').close()">Cancel</button> <button class="pri" onclick="cfgSave()">Save settings</button></div></dialog>
 <script>
-const $=id=>document.getElementById(id),W={step:[170,62],dec:[170,84],term:[150,50]},COL=['#005EA2','#7a4fb5','#d9822b','#2e9d5b','#c0392b','#16899a'];
-let D,cur,sel=null,edit=false,conn=null,dirty=false,N={};
-const uid=()=>Math.random().toString(36).slice(2,9);
-function mk(name,color,steps,extra){const nodes=steps.map((s,i)=>({id:'n'+i,t:s[0],k:s[1]||'step',x:40+(i%5)*215,y:60+Math.floor(i/5)*150,s:0}));
-const edges=[];for(let i=0;i<nodes.length-1;i++)edges.push({id:'e'+i,a:'n'+i,b:'n'+(i+1),l:nodes[i].k=='dec'?'Yes':''});
-(extra||[]).forEach((x,i)=>edges.push({id:'x'+i,a:'n'+x[0],b:'n'+x[1],l:x[2]}));return{id:uid(),name,color,nodes,edges}}
-function defaults(){return{tabs:[
-mk('HLBC','#005EA2',[['Client enquiry','term'],['Fact find / documents'],['Choose lender & product'],['Submit application'],['Approved?','dec'],['Formal approval'],['Settlement'],['Post-settlement follow-up','term']],[[4,2,'No']]),
-mk('AATBS','#C9A961',[['Client enquiry','term'],['Engagement & onboarding'],['Collect documents'],['Prepare work'],['Review OK?','dec'],['Lodge / deliver'],['Invoice'],['Complete','term']],[[4,3,'No']]),
-mk('SB','#2e9d5b',[['Customer enquiry','term'],['Quote'],['Quote accepted?','dec'],['Artwork / specs'],['Place order'],['Production'],['Delivery'],['Invoice & follow-up','term']],[[2,1,'Revise']])]}}
-function toast(t){const m=$('msg');m.textContent=t;m.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>m.style.display='none',3500)}
-const tab=()=>D.tabs.find(t=>t.id==cur)||D.tabs[0];
-function renderTabs(){const T=$('tabs');T.innerHTML='';D.tabs.forEach(t=>{const d=document.createElement('div');d.className='tab'+(t.id==cur?' on':'');d.textContent=t.name;d.style.borderBottomColor=t.id==cur?t.color:'transparent';d.onclick=()=>{cur=t.id;sel=null;conn=null;render()};T.appendChild(d)});
-if(edit){const a=document.createElement('div');a.className='tab add';a.textContent='+ New tab';a.onclick=addTab;T.appendChild(a)}}
-function render(){renderTabs();const t=tab();cur=t.id;document.querySelectorAll('.n').forEach(e=>e.remove());N={};
-t.nodes.forEach(n=>{const e=document.createElement('div');e.className=`n ${n.k} s${n.s}`+(sel&&sel.k=='n'&&sel.id==n.id?' sel':'');e.textContent=n.t;e.style.left=n.x+'px';e.style.top=n.y+'px';N[n.id]=e;$('cv').appendChild(e);
-e.onpointerdown=ev=>down(ev,n);e.ondblclick=()=>{if(edit){sel={k:'n',id:n.id};editText()}}});
-edges();$('hint').textContent=edit?(conn?'Click the node to connect TO…':'Click an item to select · drag to move · double-click to edit text'):'View mode – click ✏️ Edit to change';
-$('bConn').classList.toggle('p',!!conn);if(sel&&sel.k=='n')$('st').value=t.nodes.find(n=>n.id==sel.id)?.s||0}
-function pt(n,tx,ty){const [w,h]=W[n.k],cx=n.x+w/2,cy=n.y+h/2,dx=tx-cx,dy=ty-cy;if(!dx&&!dy)return[cx,cy];
-const s=n.k=='dec'?1/(Math.abs(dx)/(w/2)+Math.abs(dy)/(h/2)):Math.min((w/2)/Math.abs(dx||1e-9),(h/2)/Math.abs(dy||1e-9));return[cx+dx*s,cy+dy*s]}
-function edges(){const t=tab(),g=$('eg');g.innerHTML='';const by=Object.fromEntries(t.nodes.map(n=>[n.id,n]));
-t.edges.forEach(ed=>{const a=by[ed.a],b=by[ed.b];if(!a||!b)return;const ca=[a.x+W[a.k][0]/2,a.y+W[a.k][1]/2],cb=[b.x+W[b.k][0]/2,b.y+W[b.k][1]/2];
-const p=pt(a,cb[0],cb[1]),q=pt(b,ca[0],ca[1]),isel=sel&&sel.k=='e'&&sel.id==ed.id;
-g.insertAdjacentHTML('beforeend',`<g data-e="${ed.id}"><line class="hit" x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}"/><line class="e${isel?' sel':''}" x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" marker-end="url(#ar)"/>${ed.l?`<text class="el" x="${(p[0]+q[0])/2}" y="${(p[1]+q[1])/2-5}" text-anchor="middle">${esc(ed.l)}</text>`:''}</g>`)});
-g.querySelectorAll('g').forEach(x=>x.onclick=ev=>{if(!edit)return;sel={k:'e',id:x.dataset.e};render()})}
-const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-function down(ev,n){if(!edit)return;ev.preventDefault();
-if(conn&&conn!=n.id){const t=tab();if(!t.edges.some(e=>e.a==conn&&e.b==n.id)){t.edges.push({id:uid(),a:conn,b:n.id,l:''});mark()}conn=null;sel={k:'n',id:n.id};render();return}
-sel={k:'n',id:n.id};const sx=ev.clientX,sy=ev.clientY,ox=n.x,oy=n.y;let moved=false;const el=N[n.id];
-document.querySelectorAll('.n.sel').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');$('st').value=n.s;
-const mv=e=>{moved=true;n.x=Math.max(0,Math.round((ox+e.clientX-sx)/10)*10);n.y=Math.max(0,Math.round((oy+e.clientY-sy)/10)*10);el.style.left=n.x+'px';el.style.top=n.y+'px';edges()};
-const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);if(moved)mark();render()};addEventListener('pointermove',mv);addEventListener('pointerup',up)}
-function mark(){dirty=true;try{localStorage.setItem('fc_draft',JSON.stringify(D))}catch(e){}}
-function add(k){const t=tab(),w=$('wrap');t.nodes.push({id:uid(),t:k=='dec'?'Decision?':k=='term'?'Start / End':'New step',k,x:Math.round((w.scrollLeft+60)/10)*10+Math.floor(Math.random()*6)*20,y:Math.round((w.scrollTop+60)/10)*10+Math.floor(Math.random()*4)*20,s:0});sel={k:'n',id:t.nodes.at(-1).id};mark();render()}
-function connect(){if(!sel||sel.k!='n')return toast('Select the starting item first');conn=sel.id;render()}
-function editText(){if(!sel)return toast('Select an item or arrow first');const t=tab();
-if(sel.k=='n'){const n=t.nodes.find(x=>x.id==sel.id),v=prompt('Item text:',n.t);if(v!==null){n.t=v;mark();render()}}
-else{const e=t.edges.find(x=>x.id==sel.id),v=prompt('Arrow label (blank for none):',e.l);if(v!==null){e.l=v;mark();render()}}}
-function setStatus(v){if(sel&&sel.k=='n'){tab().nodes.find(n=>n.id==sel.id).s=+v;mark();render()}}
-function del(){if(!sel)return toast('Select an item or arrow first');const t=tab();
-if(sel.k=='n'){t.nodes=t.nodes.filter(n=>n.id!=sel.id);t.edges=t.edges.filter(e=>e.a!=sel.id&&e.b!=sel.id)}else t.edges=t.edges.filter(e=>e.id!=sel.id);sel=null;mark();render()}
-function addTab(){const n=prompt('Name of the new flowchart tab:');if(!n)return;const t={id:uid(),name:n,color:COL[D.tabs.length%COL.length],nodes:[{id:'a',t:'Start',k:'term',x:60,y:60,s:0}],edges:[]};D.tabs.push(t);cur=t.id;sel=null;mark();render()}
-function renameTab(){const t=tab(),n=prompt('Tab name:',t.name);if(n){t.name=n;mark();render()}}
-function delTab(){if(D.tabs.length<2)return toast('Keep at least one tab');if(confirm('Delete tab "'+tab().name+'" and its flowchart?')){D.tabs=D.tabs.filter(t=>t.id!=cur);cur=D.tabs[0].id;sel=null;mark();render()}}
-$('bEdit').onclick=()=>{edit=!edit;document.body.classList.toggle('edit',edit);$('bEdit').textContent=edit?'👁 View mode':'✏️ Edit';sel=null;conn=null;render()};
-document.addEventListener('keydown',e=>{if(edit&&(e.key=='Delete')&&sel&&!/INPUT|SELECT/.test(e.target.tagName))del()});
-function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,1)],{type:'application/json'}));a.download='flowcharts.json';a.click()}
-$('imp').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(x=>{try{const d=JSON.parse(x);if(!d.tabs)throw 0;D=d;cur=D.tabs[0].id;mark();render();toast('Imported – remember to Save')}catch(_){toast('Not a valid flowcharts.json')}})};
+const $=s=>document.querySelector(s),FS=16;
+const DEF={start:{fill:'#dcfce7',stroke:'#16a34a',w:180,h:64,t:'Start',n:'Start'},process:{fill:'#dbeafe',stroke:'#2563eb',w:210,h:80,t:'Step',n:'Step'},decision:{fill:'#fef9c3',stroke:'#ca8a04',w:240,h:130,t:'Question?',n:'Decision'},end:{fill:'#fee2e2',stroke:'#dc2626',w:180,h:64,t:'End',n:'End'}};
+const SC=['','#f59e0b','#16a34a','#dc2626'],SG=['','…','✓','!'],SN=['Not started','In progress','Done','Blocked'];
+let D,cur,sel=null,selE=null,edit=false,dirty=false,hist=[],hi=-1,view={x:40,y:40,k:1},tmp='',drag=null,N=0;
+const uid=()=>Math.random().toString(36).slice(2,9),T=()=>D.tabs.find(t=>t.id==cur)||D.tabs[0],G=id=>T().nodes.find(n=>n.id===id),snap=v=>Math.round(v/10)*10;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const wrap=(s,c)=>{const o=[];String(s).split('\n').forEach(p=>{let l='';p.split(/\s+/).forEach(w=>{if(l&&(l+' '+w).length>c){o.push(l);l=w}else l=l?l+' '+w:w});o.push(l)});return o};
+function size(n){const d=DEF[n.type],dec=n.type=='decision',c=Math.max(6,Math.floor((d.w-(dec?110:34))/(FS*.55))),L=wrap(n.text,c);n.w=d.w;n.h=Math.max(d.h,Math.ceil((L.length*FS*1.3+(dec?80:30))/10)*10)}
+function mkNode(type,text){const n={id:uid(),type,x:0,y:0,text:text??DEF[type].t,s:0};size(n);return n}
+function addEdge(a,b,label){const t=T();if(a===b||t.edges.some(e=>e.from===a&&e.to===b))return null;
+if(label===undefined){label='';if(G(a).type==='decision'){const c=t.edges.filter(e=>e.from===a).length;label=c===0?'Yes':c===1?'No':''}}
+const e={id:uid(),from:a,to:b,label};t.edges.push(e);return e}
+/* ---------- auto layout ---------- */
+function arrange(t){const ids=t.nodes.map(n=>n.id);if(!ids.length)return;const inc={},out={};ids.forEach(i=>{inc[i]=0;out[i]=[]});
+t.edges.forEach(e=>{if(out[e.from]&&inc[e.to]!==undefined){out[e.from].push(e.to);inc[e.to]++}});
+let roots=ids.filter(i=>!inc[i]);if(!roots.length)roots=[ids[0]];const lv={},q=[...roots];roots.forEach(r=>lv[r]=0);
+while(q.length){const a=q.shift();out[a].forEach(b=>{if(lv[b]===undefined){lv[b]=lv[a]+1;q.push(b)}})}
+const mx=Math.max(...Object.values(lv));ids.forEach(i=>{if(lv[i]===undefined)lv[i]=mx+1});
+const L=[];t.nodes.forEach(n=>(L[lv[n.id]]=L[lv[n.id]]||[]).push(n));const tb=t.dir=='TB';let p=0;
+L.filter(Boolean).forEach(g=>{const ext=Math.max(...g.map(n=>tb?n.h:n.w)),tot=g.reduce((s,n)=>s+(tb?n.w:n.h),0)+(g.length-1)*60;let c=-tot/2;
+g.forEach(n=>{if(tb){n.x=c;n.y=p+(ext-n.h)/2;c+=n.w+60}else{n.x=p+(ext-n.w)/2;n.y=c;c+=n.h+60}});p+=ext+(tb?90:110)});
+const x0=Math.min(...t.nodes.map(n=>n.x)),y0=Math.min(...t.nodes.map(n=>n.y));t.nodes.forEach(n=>{n.x=snap(n.x-x0+60);n.y=snap(n.y-y0+60)})}
+function mkTab(name,steps,extra){const t={id:uid(),name,dir:'LR',nodes:[],edges:[]};steps.forEach((s,i)=>{const n=mkNode(s[1]||'process',s[0]);n.id='n'+i;t.nodes.push(n)});
+for(let i=0;i<steps.length-1;i++)t.edges.push({id:'e'+i,from:'n'+i,to:'n'+(i+1),label:steps[i][1]=='decision'?'Yes':''});
+(extra||[]).forEach((x,i)=>t.edges.push({id:'x'+i,from:'n'+x[0],to:'n'+x[1],label:x[2]}));arrange(t);return t}
+function defaults(){return{v:3,tabs:[
+mkTab('HLBC',[['Client enquiry','start'],['Fact find / documents'],['Choose lender & product'],['Submit application'],['Approved?','decision'],['Formal approval'],['Settlement'],['Follow-up','end']],[[4,2,'No']]),
+mkTab('AATBS',[['Client enquiry','start'],['Engagement & onboarding'],['Collect documents'],['Prepare work'],['Review OK?','decision'],['Lodge / deliver'],['Invoice'],['Complete','end']],[[4,3,'No']]),
+mkTab('SB',[['Customer enquiry','start'],['Quote'],['Quote accepted?','decision'],['Artwork / specs'],['Place order'],['Production'],['Delivery'],['Invoice & follow-up','end']],[[2,1,'Revise']])]}}
+function prep(){D.tabs.forEach(t=>{t.dir=t.dir=='v'?'TB':t.dir=='h'||!t.dir?'LR':t.dir;
+t.edges.forEach(e=>{if(e.a){e.from=e.a;e.to=e.b;e.label=e.l||'';delete e.a;delete e.b;delete e.l}});
+t.nodes.forEach(n=>{if(n.k){const inc=t.edges.some(e=>e.to==n.id);n.type=n.k=='dec'?'decision':n.k=='term'?(inc?'end':'start'):'process';n.text=n.t;delete n.k;delete n.t}n.s=n.s||0;size(n)})});
+if(D.v!==3){D.tabs.forEach(arrange);D.v=3}}
+/* ---------- history / storage ---------- */
+function commit(){const j=JSON.stringify(D);if(hist[hi]===j)return;hist.length=hi+1;hist.push(j);if(hist.length>100)hist.shift();hi=hist.length-1;dirty=true;try{localStorage.setItem('fc_draft',j)}catch(e){}$('#st').textContent='● Unsaved changes'}
+function draft(){dirty=true;$('#st').textContent='● Unsaved changes';try{localStorage.setItem('fc_draft',JSON.stringify(D))}catch(e){}}
+function restore(){D=JSON.parse(hist[hi]);if(!D.tabs.some(t=>t.id==cur))cur=D.tabs[0].id;if(sel&&!G(sel))sel=null;dirty=true;full()}
+function undo(){if(hi>0){hi--;restore()}}function redo(){if(hi<hist.length-1){hi++;restore()}}
+function toast(t){const m=$('#msg');m.textContent=t;m.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>m.style.display='none',4500)}
+/* ---------- drawing ---------- */
+function route(a,b){const ax=a.x+a.w/2,ay=a.y+a.h/2,bx=b.x+b.w/2,by=b.y+b.h/2,dx=bx-ax,dy=by-ay,tb=T().dir=='TB';
+if(tb?dy<-10:dx<-10){if(tb){const x=Math.max(a.x+a.w,b.x+b.w)+60;return{p:[[a.x+a.w,ay],[x,ay],[x,by],[b.x+b.w,by]],l:[x,(ay+by)/2]}}
+const y=Math.max(a.y+a.h,b.y+b.h)+60;return{p:[[ax,a.y+a.h],[ax,y],[bx,y],[bx,b.y+b.h]],l:[(ax+bx)/2,y]}}
+if(tb?Math.abs(dx)<=1.2*Math.abs(dy):Math.abs(dy)>1.2*Math.abs(dx)){const s=dy>=0?1:-1,p1=[ax,ay+s*a.h/2],p2=[bx,by-s*b.h/2],m=(p1[1]+p2[1])/2;return{p:[p1,[ax,m],[bx,m],p2],l:[ax+26,p1[1]+s*18]}}
+const s=dx>=0?1:-1,p1=[ax+s*a.w/2,ay],p2=[bx-s*b.w/2,by],m=(p1[0]+p2[0])/2;return{p:[p1,[m,ay],[m,by],p2],l:[p1[0]+s*36,ay-14]}}
+function edgeSVG(e,on){const a=G(e.from),b=G(e.to);if(!a||!b)return'';const r=route(a,b),d='M'+r.p.map(q=>q.join(' ')).join('L'),c=on?'#2563eb':'#475569';let lb='';
+if(e.label){const w=e.label.length*8.5+14;lb=`<rect x="${r.l[0]-w/2}" y="${r.l[1]-11}" width="${w}" height="22" rx="4" fill="#fff" opacity=".95"/><text x="${r.l[0]}" y="${r.l[1]}" text-anchor="middle" dominant-baseline="central" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="${c}">${esc(e.label)}</text>`}
+return`<g data-e="${e.id}"><path d="${d}" fill="none" stroke="transparent" stroke-width="18"/><path d="${d}" fill="none" stroke="${c}" stroke-width="${on?4:3}" marker-end="url(#${on?'arrS':'arr'})"/>${lb}</g>`}
+function nodeSVG(n){const d=DEF[n.type],{x,y,w,h}=n,cx=x+w/2,cy=y+h/2,st=`fill="${d.fill}" stroke="${d.stroke}" stroke-width="3"`;let s;
+if(n.type=='decision')s=`<polygon points="${cx},${y} ${x+w},${cy} ${cx},${y+h} ${x},${cy}" ${st}/>`;else s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${n.type=='process'?10:h/2}" ${st}/>`;
+const dec=n.type=='decision',L=wrap(n.text,Math.max(6,Math.floor((d.w-(dec?110:34))/(FS*.55))));
+s+=L.map((l,i)=>`<text x="${cx}" y="${cy+(i-(L.length-1)/2)*FS*1.3}" text-anchor="middle" dominant-baseline="central" font-family="system-ui,Arial,sans-serif" font-size="${FS}" font-weight="600" fill="#0f172a">${esc(l)}</text>`).join('');
+if(n.s){const bx=dec?x+w*.78:x+w-6,by=dec?y+h*.22:y+6;s+=`<circle cx="${bx}" cy="${by}" r="13" fill="${SC[n.s]}" stroke="#fff" stroke-width="2"/><text x="${bx}" y="${by}" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="700" fill="#fff">${SG[n.s]}</text>`}
+return`<g data-n="${n.id}"${edit?' style="cursor:move"':''}>${s}</g>`}
+function selSVG(n){const{x,y,w,h}=n,hs=[[x+w/2,y],[x+w,y+h/2],[x+w/2,y+h],[x,y+h/2]];
+return`<rect x="${x-8}" y="${y-8}" width="${w+16}" height="${h+16}" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 4" pointer-events="none"/>`+hs.map(q=>`<circle data-h="${n.id}" cx="${q[0]}" cy="${q[1]}" r="8" fill="#fff" stroke="#2563eb" stroke-width="3" style="cursor:crosshair"/>`).join('')}
+function render(){const t=T();let h=t.edges.map(e=>edgeSVG(e,e.id===selE)).join('')+t.nodes.map(nodeSVG).join('');if(edit&&sel&&G(sel))h+=selSVG(G(sel));h+=tmp;
+$('#g').innerHTML=h;$('#g').setAttribute('transform',`translate(${view.x} ${view.y}) scale(${view.k})`);$('#zl').textContent=Math.round(view.k*100)+'%';
+const hn=$('#hint');hn.style.display=t.nodes.length?'none':'flex';hn.innerHTML=edit?'<b>This flowchart is empty</b>Click a shape on the left to begin':'<b>This flowchart is empty</b>'}
+function bounds(){const t=T();if(!t.nodes.length)return{x:0,y:0,w:100,h:100};const x0=Math.min(...t.nodes.map(n=>n.x)),y0=Math.min(...t.nodes.map(n=>n.y));return{x:x0,y:y0,w:Math.max(...t.nodes.map(n=>n.x+n.w))-x0,h:Math.max(...t.nodes.map(n=>n.y+n.h))-y0+60}}
+function zoomBy(f,cx,cy){const c=$('#cv');cx=cx??c.clientWidth/2;cy=cy??c.clientHeight/2;const k=Math.min(3,Math.max(.2,view.k*f));view.x=cx-(cx-view.x)*k/view.k;view.y=cy-(cy-view.y)*k/view.k;view.k=k;render()}
+function fitView(){const c=$('#cv'),b=bounds(),fk=Math.min((c.clientWidth-80)/b.w,(c.clientHeight-80)/b.h),k=Math.max(.6,Math.min(1.3,fk));view.k=k;
+view.x=b.w*k+80<c.clientWidth?(c.clientWidth-b.w*k)/2-b.x*k:40-b.x*k;view.y=b.h*k+80<c.clientHeight?(c.clientHeight-b.h*k)/2-b.y*k:40-b.y*k;render()}
+const wpt=e=>{const r=$('#cv').getBoundingClientRect();return{x:(e.clientX-r.left-view.x)/view.k,y:(e.clientY-r.top-view.y)/view.k}};
+/* ---------- selection & events ---------- */
+function select(id){sel=id;selE=null;panel();render()}function selectEdge(id){sel=null;selE=id;panel();render()}
+const cv=$('#cv');
+cv.addEventListener('pointerdown',e=>{const t=e.target,hd=t.closest('[data-h]'),nd=t.closest('[data-n]'),ed=t.closest('[data-e]'),p=wpt(e);
+if(edit){if(hd){drag={k:'conn',id:hd.dataset.h};return}
+if(nd){const n=G(nd.dataset.n);select(n.id);drag={k:'move',id:n.id,ox:p.x-n.x,oy:p.y-n.y,moved:false};return}
+if(ed){selectEdge(ed.dataset.e);return}if(sel||selE)select(null)}
+drag={k:'pan',sx:e.clientX,sy:e.clientY,vx:view.x,vy:view.y}});
+addEventListener('pointermove',e=>{if(!drag)return;const p=wpt(e);
+if(drag.k=='move'){const n=G(drag.id);n.x=Math.max(0,snap(p.x-drag.ox));n.y=Math.max(0,snap(p.y-drag.oy));drag.moved=true;render()}
+else if(drag.k=='pan'){view.x=drag.vx+e.clientX-drag.sx;view.y=drag.vy+e.clientY-drag.sy;render()}
+else if(drag.k=='conn'){const n=G(drag.id);tmp=`<line x1="${n.x+n.w/2}" y1="${n.y+n.h/2}" x2="${p.x}" y2="${p.y}" stroke="#2563eb" stroke-width="3" stroke-dasharray="7 5" pointer-events="none"/>`;render()}});
+addEventListener('pointerup',e=>{if(!drag)return;
+if(drag.k=='move'&&drag.moved)commit();
+if(drag.k=='conn'){const t=document.elementFromPoint(e.clientX,e.clientY),nd=t&&t.closest&&t.closest('[data-n]');if(nd&&nd.dataset.n!==drag.id&&addEdge(drag.id,nd.dataset.n)){commit();panel()}}
+tmp='';drag=null;render()});
+cv.addEventListener('dblclick',e=>{if(!edit)return;const nd=e.target.closest('[data-n]');if(nd){select(nd.dataset.n);const t=$('#ptext');if(t){t.focus();t.select()}}});
+cv.addEventListener('wheel',e=>{e.preventDefault();if(e.ctrlKey||e.metaKey){const r=cv.getBoundingClientRect();zoomBy(e.deltaY<0?1.1:1/1.1,e.clientX-r.left,e.clientY-r.top)}else{view.x-=e.deltaX;view.y-=e.deltaY;render()}},{passive:false});
+cv.addEventListener('dragover',e=>e.preventDefault());
+cv.addEventListener('drop',e=>{e.preventDefault();const t=e.dataTransfer.getData('text/plain');if(DEF[t]&&edit)addShape(t,wpt(e))});
+addEventListener('keydown',e=>{if(!edit||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;const c=e.ctrlKey||e.metaKey,k=e.key.toLowerCase();
+if(k=='delete'||k=='backspace'){e.preventDefault();del()}else if(c&&k=='z'){e.preventDefault();e.shiftKey?redo():undo()}else if(c&&k=='y'){e.preventDefault();redo()}else if(k=='escape')select(null)});
+/* ---------- shape operations ---------- */
+function addShape(type,at){const t=T(),n=mkNode(type),s=!at&&sel&&G(sel),tb=t.dir=='TB';
+if(at){n.x=snap(at.x-n.w/2);n.y=snap(at.y-n.h/2)}
+else if(s){const k=t.edges.filter(e=>e.from==s.id).length,o=k?(k%2?1:-1)*Math.ceil(k/2):0;
+if(tb){n.x=snap(s.x+(s.w-n.w)/2+o*(n.w+60));n.y=snap(s.y+s.h+90)}else{n.x=snap(s.x+s.w+110);n.y=snap(s.y+(s.h-n.h)/2+o*(n.h+60))}}
+else{const c=$('#cv');n.x=snap((c.clientWidth/2-view.x)/view.k-n.w/2);n.y=snap((c.clientHeight/2-view.y)/view.k-n.h/2)}
+for(let i=0;i<40&&t.nodes.some(m=>n.x<m.x+m.w+20&&n.x+n.w+20>m.x&&n.y<m.y+m.h+20&&n.y+n.h+20>m.y);i++){if(tb)n.x+=n.w+40;else n.y+=n.h+40}
+t.nodes.push(n);if(s)addEdge(s.id,n.id);commit();select(n.id);const x=$('#ptext');if(x){x.focus();x.select()}}
+function del(){const t=T();if(sel){t.nodes=t.nodes.filter(n=>n.id!=sel);t.edges=t.edges.filter(e=>e.from!=sel&&e.to!=sel)}else if(selE)t.edges=t.edges.filter(e=>e.id!=selE);else return;sel=selE=null;commit();panel();render()}
+function setDir(d){const t=T();if(t.dir==d)return;t.dir=d;if(confirm('Re-arrange the shapes to flow '+(d=='TB'?'top to bottom':'left to right')+'?\n(Cancel keeps their current positions)'))arrange(t);commit();full()}
+function autoLayout(){arrange(T());commit();full()}
+function clearAll(){if(confirm('Remove ALL shapes from "'+T().name+'"? (You can press Undo)')){T().nodes=[];T().edges=[];sel=selE=null;commit();full()}}
+function addTab(){const n=prompt('Name of the new flowchart (e.g. Marketing Flowchart):');if(!n)return;const t={id:uid(),name:n,dir:T().dir,nodes:[],edges:[]};D.tabs.push(t);cur=t.id;sel=selE=null;commit();full()}
+function renameTab(){const n=prompt('Tab name:',T().name);if(n){T().name=n;commit();tabs()}}
+function delTab(){if(D.tabs.length<2)return toast('Keep at least one tab');if(confirm('Delete "'+T().name+'" and its flowchart?')){D.tabs=D.tabs.filter(t=>t.id!=cur);cur=D.tabs[0].id;sel=selE=null;commit();full()}}
+/* ---------- panels ---------- */
+function tabs(){const el=$('#tabs');el.innerHTML='';D.tabs.forEach(t=>{const d=document.createElement('div');d.className='tab'+(t.id==cur?' on':'');d.textContent=t.name;d.onclick=()=>{cur=t.id;sel=selE=null;full()};el.appendChild(d)});
+if(edit){const a=document.createElement('div');a.className='tab add';a.textContent='＋ New tab';a.onclick=addTab;el.appendChild(a)}}
+function panel(){const p=$('#pr'),n=sel&&G(sel),e=selE&&T().edges.find(x=>x.id==selE);
+if(n)p.innerHTML=`<h3>Selected shape</h3><label class="f"><span>Text</span><textarea id="ptext" rows="3" oninput="txt(this.value)" onchange="commit()">${esc(n.text)}</textarea></label>
+<label class="f"><span>Shape</span><select onchange="setType(this.value)">${Object.keys(DEF).map(k=>`<option value="${k}"${k==n.type?' selected':''}>${DEF[k].n}</option>`).join('')}</select></label>
+<div class="f"><span>Status</span><div class="stg">${SN.map((s,i)=>`<button class="${i==n.s?'on':''}" onclick="setSt(${i})">${s}</button>`).join('')}</div></div>
+<button class="dng full" onclick="del()">🗑 Delete shape</button>`;
+else if(e)p.innerHTML=`<h3>Selected arrow</h3><label class="f"><span>Label (optional)</span><input id="plabel" value="${esc(e.label)}" oninput="lab(this.value)" onchange="commit()"></label>
+<div class="two"><button onclick="setLab('Yes')">Yes</button><button onclick="setLab('No')">No</button><button onclick="setLab('')">None</button></div><button class="dng full" onclick="del()">🗑 Delete arrow</button>`;
+else p.innerHTML=`<h3>Selected</h3><p class="mut">Click a shape or arrow to edit it.<br><br>• Drag a shape to move it<br>• Double-click a shape to type in it<br>• Drag a blue dot from a shape onto another shape to connect them<br>• Press Delete to remove</p>`;
+$('#dLR').classList.toggle('on',T().dir!='TB');$('#dTB').classList.toggle('on',T().dir=='TB')}
+function txt(v){const n=G(sel);n.text=v;size(n);draft();render()}
+function setType(v){const n=G(sel);n.type=v;size(n);commit();panel();render()}
+function setSt(i){G(sel).s=i;commit();panel();render()}
+function lab(v){T().edges.find(e=>e.id==selE).label=v;draft();render()}
+function setLab(v){T().edges.find(e=>e.id==selE).label=v;commit();panel();render()}
+function full(){tabs();panel();fitView()}
+$('#shapes').innerHTML=Object.keys(DEF).map(k=>`<button class="shp" draggable="true" ondragstart="event.dataTransfer.setData('text/plain','${k}')" onclick="addShape('${k}')"><i style="background:${DEF[k].fill};border-color:${DEF[k].stroke}${k=='decision'?';transform:rotate(45deg) scale(.8)':k=='process'?'':';border-radius:10px'}"></i>${DEF[k].n}</button>`).join('');
+$('#bEdit').onclick=()=>{edit=!edit;document.body.classList.toggle('edit',edit);$('#bEdit').textContent=edit?'✔ Done editing':'✏️ Edit';sel=selE=null;tabs();panel();setTimeout(fitView,0)};
+/* ---------- GitHub save ---------- */
 function cfg(){let c={};try{c=JSON.parse(localStorage.getItem('fc_cfg')||'{}')}catch(e){}
-if(!c.o&&location.hostname.endsWith('.github.io')){c.o=location.hostname.split('.')[0];c.r=location.pathname.split('/')[1]||c.o+'.github.io'}c.b=c.b||'main';return c}
-$('dlg').addEventListener('close',()=>{});$('dlg').addEventListener('click',()=>{});
-document.getElementById('bEdit').addEventListener('click',()=>{const c=cfg();$('co').value=c.o||'';$('cr').value=c.r||'';$('cb').value=c.b||'main';$('ct').value=c.t||''});
-function cfgSave(){localStorage.setItem('fc_cfg',JSON.stringify({o:$('co').value.trim(),r:$('cr').value.trim(),b:$('cb').value.trim()||'main',t:$('ct').value.trim()}));$('dlg').close();toast('Settings saved')}
-async function save(){const c=cfg();if(!c.o||!c.r||!c.t){const x=cfg();$('co').value=x.o||'';$('cr').value=x.r||'';$('cb').value=x.b;$('ct').value=x.t||'';$('dlg').showModal();return toast('Add your GitHub details and token first')}
+if(!c.o)c.o=location.hostname.endsWith('.github.io')?location.hostname.split('.')[0]:'elyzagarcia7';
+if(!c.r)c.r=location.hostname.endsWith('.github.io')?(location.pathname.split('/')[1]||c.o+'.github.io'):'flowcharts';c.b=c.b||'main';return c}
+function openCfg(){const c=cfg();$('#co').value=c.o;$('#cr').value=c.r;$('#cb').value=c.b;$('#ct').value=c.t||'';$('#dlg').showModal()}
+function cfgSave(){localStorage.setItem('fc_cfg',JSON.stringify({o:$('#co').value.trim(),r:$('#cr').value.trim(),b:$('#cb').value.trim()||'main',t:$('#ct').value.trim()}));$('#dlg').close();toast('Settings saved')}
+async function save(){const c=cfg();if(!c.t){openCfg();return toast('Paste your GitHub token first')}
 const u=`https://api.github.com/repos/${c.o}/${c.r}/contents/flowcharts.json`,H={Authorization:'Bearer '+c.t,Accept:'application/vnd.github+json'};
-try{D.updated=new Date().toISOString();let sha;const g=await fetch(u+'?ref='+c.b,{headers:H});if(g.ok)sha=(await g.json()).sha;else if(g.status!=404)throw new Error('Check token/repo ('+g.status+')');
-const r=await fetch(u,{method:'PUT',headers:H,body:JSON.stringify({message:'Update flowcharts',branch:c.b,sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(D,null,1))))})});
-if(!r.ok)throw new Error('GitHub refused the save ('+r.status+'). Token needs Contents: Read and write.');dirty=false;localStorage.removeItem('fc_draft');stamp();toast('Saved ✔ – live in about a minute')}catch(e){toast('Save failed: '+e.message)}}
-function stamp(){$('stamp').textContent=D.updated?'· updated '+new Date(D.updated).toLocaleString():''}
+try{D.updated=new Date().toISOString();let sha;const g=await fetch(u+'?ref='+c.b,{headers:H});if(g.ok)sha=(await g.json()).sha;else if(g.status!=404)throw new Error('check token / repo name ('+g.status+')');
+const r=await fetch(u,{method:'PUT',headers:H,body:JSON.stringify({message:'Update flowcharts',branch:c.b,sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(D))))})});
+if(!r.ok)throw new Error('GitHub refused it ('+r.status+'). The token needs Contents: Read and write.');dirty=false;localStorage.removeItem('fc_draft');stamp();toast('Saved ✔ Live for everyone in about a minute')}catch(e){toast('Save failed: '+e.message)}}
+function stamp(){$('#st').textContent=D.updated?'Last updated '+new Date(D.updated).toLocaleString():''}
 addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
+addEventListener('resize',()=>render());
 (async()=>{try{const r=await fetch('flowcharts.json?'+Date.now());D=r.ok?await r.json():defaults()}catch(e){D=defaults()}
 try{const d=localStorage.getItem('fc_draft');if(d&&confirm('You have unsaved changes from earlier on this device. Restore them?')){D=JSON.parse(d);dirty=true}else localStorage.removeItem('fc_draft')}catch(e){}
-cur=D.tabs[0].id;stamp();render()})();
+prep();hist=[JSON.stringify(D)];hi=0;cur=D.tabs[0].id;if(dirty)$('#st').textContent='● Unsaved changes';else stamp();tabs();panel();fitView()})();
 </script></body></html>

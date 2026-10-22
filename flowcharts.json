@@ -1,1 +1,528 @@
-{"v":3,"tabs":[{"id":"hlbc","name":"HLBC","dir":"LR","nodes":[{"id":"n0","type":"start","text":"HLBC Marketing","s":0,"w":180,"h":64,"x":75,"y":170},{"id":"n1","type":"process","text":"SEO","s":0,"w":210,"h":80,"x":410,"y":160},{"id":"n2","type":"process","text":"Submit to listings","s":1,"w":210,"h":80,"x":760,"y":60},{"id":"n3","type":"process","text":"Edit the keywords on the website","s":0,"w":210,"h":80,"x":760,"y":260},{"id":"n4","type":"process","text":"Build one page per service","s":0,"w":210,"h":80,"x":1110,"y":190},{"id":"n5","type":"process","text":"Write page titles and meta descriptions","s":0,"w":210,"h":100,"x":1110,"y":310}],"edges":[{"id":"e0","from":"n0","to":"n1","label":""},{"id":"e1","from":"n1","to":"n2","label":""},{"id":"e2","from":"n1","to":"n3","label":""},{"id":"e3","from":"n3","to":"n4","label":""},{"id":"e4","from":"n3","to":"n5","label":""}]},{"id":"aatbs","name":"AATBS","dir":"LR","nodes":[{"id":"n0","type":"start","text":"Advanced Accounting Marketing","s":0,"w":180,"h":100,"x":80,"y":770},{"id":"n1","type":"process","text":"Medical accounting outreach","s":1,"w":210,"h":80,"x":410,"y":120},{"id":"n2","type":"process","text":"Medical accounting landing page","s":0,"w":210,"h":80,"x":760,"y":60},{"id":"n3","type":"process","text":"Medical accounting email sequence","s":0,"w":210,"h":80,"x":760,"y":190},{"id":"n4","type":"process","text":"Edit the website","s":1,"w":210,"h":80,"x":480,"y":530},{"id":"n5","type":"process","text":"Edit keywords","s":0,"w":210,"h":80,"x":1070,"y":340},{"id":"n6","type":"process","text":"Edit page titles","s":0,"w":210,"h":80,"x":1150,"y":550},{"id":"n7","type":"process","text":"Backlinking (SEO)","s":1,"w":210,"h":80,"x":410,"y":680},{"id":"n8","type":"process","text":"Reach out to listings","s":0,"w":210,"h":80,"x":760,"y":680},{"id":"n9","type":"process","text":"Proposed additions (not approved yet)","s":0,"w":210,"h":80,"x":410,"y":990},{"id":"n10","type":"process","text":"Calculator","s":0,"w":210,"h":80,"x":760,"y":860},{"id":"n11","type":"process","text":"Checklist","s":0,"w":210,"h":80,"x":760,"y":990},{"id":"n12","type":"process","text":"Quiz (email sign-up)","s":0,"w":210,"h":80,"x":760,"y":1120},{"id":"n13","type":"process","text":"Fixes and checks","s":1,"w":210,"h":80,"x":410,"y":1430},{"id":"n14","type":"process","text":"Fix the uplift","s":0,"w":210,"h":80,"x":850,"y":1370},{"id":"n16","type":"process","text":"Check ISR settings (recently edited to optimise usage)","s":2,"w":210,"h":100,"x":760,"y":1550}],"edges":[{"id":"e1","from":"n1","to":"n2","label":""},{"id":"e2","from":"n1","to":"n3","label":""},{"id":"e3","from":"n0","to":"n4","label":""},{"id":"e4","from":"n4","to":"n5","label":""},{"id":"e5","from":"n4","to":"n6","label":""},{"id":"e6","from":"n0","to":"n7","label":""},{"id":"e7","from":"n7","to":"n8","label":""},{"id":"e8","from":"n0","to":"n9","label":""},{"id":"e9","from":"n9","to":"n10","label":""},{"id":"e10","from":"n9","to":"n11","label":""},{"id":"e11","from":"n9","to":"n12","label":""},{"id":"e12","from":"n0","to":"n13","label":""},{"id":"e13","from":"n13","to":"n14","label":""},{"id":"e15","from":"n13","to":"n16","label":""},{"id":"sdnyb4j","from":"n0","to":"n1","label":""}]},{"id":"sb","name":"SB","dir":"LR","nodes":[],"edges":[]}],"updated":"2026-10-22T05:32:29.222Z"}
+{
+ "v": 3,
+ "tabs": [
+  {
+   "id": "hlbc",
+   "name": "HLBC",
+   "dir": "LR",
+   "nodes": [
+    {
+     "id": "n0",
+     "type": "start",
+     "text": "HLBC Marketing",
+     "s": 0,
+     "w": 180,
+     "h": 64,
+     "x": 75,
+     "y": 170
+    },
+    {
+     "id": "n1",
+     "type": "process",
+     "text": "SEO",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 160
+    },
+    {
+     "id": "n2",
+     "type": "process",
+     "text": "Submit to listings",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 60
+    },
+    {
+     "id": "n3",
+     "type": "process",
+     "text": "Edit the keywords on the website",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 260
+    },
+    {
+     "id": "n4",
+     "type": "process",
+     "text": "Build one page per service",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 1110,
+     "y": 190
+    },
+    {
+     "id": "n5",
+     "type": "process",
+     "text": "Write page titles and meta descriptions",
+     "s": 0,
+     "w": 210,
+     "h": 100,
+     "x": 1110,
+     "y": 310
+    }
+   ],
+   "edges": [
+    {
+     "id": "e0",
+     "from": "n0",
+     "to": "n1",
+     "label": ""
+    },
+    {
+     "id": "e1",
+     "from": "n1",
+     "to": "n2",
+     "label": ""
+    },
+    {
+     "id": "e2",
+     "from": "n1",
+     "to": "n3",
+     "label": ""
+    },
+    {
+     "id": "e3",
+     "from": "n3",
+     "to": "n4",
+     "label": ""
+    },
+    {
+     "id": "e4",
+     "from": "n3",
+     "to": "n5",
+     "label": ""
+    }
+   ]
+  },
+  {
+   "id": "aatbs",
+   "name": "AATBS",
+   "dir": "LR",
+   "nodes": [
+    {
+     "id": "n0",
+     "type": "start",
+     "text": "Advanced Accounting Marketing",
+     "s": 0,
+     "w": 180,
+     "h": 100,
+     "x": 75,
+     "y": 770
+    },
+    {
+     "id": "n1",
+     "type": "process",
+     "text": "Medical accounting outreach",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 120
+    },
+    {
+     "id": "n2",
+     "type": "process",
+     "text": "Medical accounting landing page",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 60
+    },
+    {
+     "id": "n3",
+     "type": "process",
+     "text": "Medical accounting email sequence",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 190
+    },
+    {
+     "id": "n4",
+     "type": "process",
+     "text": "Edit the website",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 440
+    },
+    {
+     "id": "n5",
+     "type": "process",
+     "text": "Edit keywords",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 370
+    },
+    {
+     "id": "n6",
+     "type": "process",
+     "text": "Edit page titles",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 500
+    },
+    {
+     "id": "n7",
+     "type": "process",
+     "text": "Backlinking (SEO)",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 680
+    },
+    {
+     "id": "n8",
+     "type": "process",
+     "text": "Reach out to listings",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 680
+    },
+    {
+     "id": "n9",
+     "type": "process",
+     "text": "Proposed additions (not approved yet)",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 990
+    },
+    {
+     "id": "n10",
+     "type": "process",
+     "text": "Calculator",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 860
+    },
+    {
+     "id": "n11",
+     "type": "process",
+     "text": "Checklist",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 990
+    },
+    {
+     "id": "n12",
+     "type": "process",
+     "text": "Quiz (email sign-up)",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 1120
+    },
+    {
+     "id": "n13",
+     "type": "process",
+     "text": "Fixes and checks",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 1430
+    },
+    {
+     "id": "n14",
+     "type": "process",
+     "text": "Fix the uplift",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 1300
+    },
+    {
+     "id": "n15",
+     "type": "process",
+     "text": "Check the integration",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 1430
+    },
+    {
+     "id": "n16",
+     "type": "process",
+     "text": "Check ISR settings (recently edited to optimise usage)",
+     "s": 0,
+     "w": 210,
+     "h": 100,
+     "x": 760,
+     "y": 1550
+    }
+   ],
+   "edges": [
+    {
+     "id": "e0",
+     "from": "n0",
+     "to": "n1",
+     "label": ""
+    },
+    {
+     "id": "e1",
+     "from": "n1",
+     "to": "n2",
+     "label": ""
+    },
+    {
+     "id": "e2",
+     "from": "n1",
+     "to": "n3",
+     "label": ""
+    },
+    {
+     "id": "e3",
+     "from": "n0",
+     "to": "n4",
+     "label": ""
+    },
+    {
+     "id": "e4",
+     "from": "n4",
+     "to": "n5",
+     "label": ""
+    },
+    {
+     "id": "e5",
+     "from": "n4",
+     "to": "n6",
+     "label": ""
+    },
+    {
+     "id": "e6",
+     "from": "n0",
+     "to": "n7",
+     "label": ""
+    },
+    {
+     "id": "e7",
+     "from": "n7",
+     "to": "n8",
+     "label": ""
+    },
+    {
+     "id": "e8",
+     "from": "n0",
+     "to": "n9",
+     "label": ""
+    },
+    {
+     "id": "e9",
+     "from": "n9",
+     "to": "n10",
+     "label": ""
+    },
+    {
+     "id": "e10",
+     "from": "n9",
+     "to": "n11",
+     "label": ""
+    },
+    {
+     "id": "e11",
+     "from": "n9",
+     "to": "n12",
+     "label": ""
+    },
+    {
+     "id": "e12",
+     "from": "n0",
+     "to": "n13",
+     "label": ""
+    },
+    {
+     "id": "e13",
+     "from": "n13",
+     "to": "n14",
+     "label": ""
+    },
+    {
+     "id": "e14",
+     "from": "n13",
+     "to": "n15",
+     "label": ""
+    },
+    {
+     "id": "e15",
+     "from": "n13",
+     "to": "n16",
+     "label": ""
+    }
+   ]
+  },
+  {
+   "id": "sb",
+   "name": "SB",
+   "dir": "LR",
+   "nodes": [
+    {
+     "id": "n0",
+     "type": "start",
+     "text": "Shopping Bags Marketing",
+     "s": 0,
+     "w": 180,
+     "h": 80,
+     "x": 75,
+     "y": 340
+    },
+    {
+     "id": "n1",
+     "type": "process",
+     "text": "Banners and flyers",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 120
+    },
+    {
+     "id": "n2",
+     "type": "process",
+     "text": "Get GP % and RRP",
+     "s": 1,
+     "note": "Still pending. Spreadsheet sent to Abby, waiting for the information to be forwarded.",
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 60
+    },
+    {
+     "id": "n3",
+     "type": "process",
+     "text": "Go through the digital flyer",
+     "s": 1,
+     "note": "Post for later.",
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 190
+    },
+    {
+     "id": "n4",
+     "type": "process",
+     "text": "Social media",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 370
+    },
+    {
+     "id": "n5",
+     "type": "process",
+     "text": "First post for shopping bags",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 370
+    },
+    {
+     "id": "n6",
+     "type": "process",
+     "text": "Outreach",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 410,
+     "y": 550
+    },
+    {
+     "id": "n7",
+     "type": "process",
+     "text": "Email outreach",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 760,
+     "y": 550
+    },
+    {
+     "id": "n8",
+     "type": "process",
+     "text": "Go through prospect clients",
+     "s": 0,
+     "w": 210,
+     "h": 80,
+     "x": 1110,
+     "y": 550
+    }
+   ],
+   "edges": [
+    {
+     "id": "e0",
+     "from": "n0",
+     "to": "n1",
+     "label": ""
+    },
+    {
+     "id": "e1",
+     "from": "n1",
+     "to": "n2",
+     "label": ""
+    },
+    {
+     "id": "e2",
+     "from": "n1",
+     "to": "n3",
+     "label": ""
+    },
+    {
+     "id": "e3",
+     "from": "n0",
+     "to": "n4",
+     "label": ""
+    },
+    {
+     "id": "e4",
+     "from": "n4",
+     "to": "n5",
+     "label": ""
+    },
+    {
+     "id": "e5",
+     "from": "n0",
+     "to": "n6",
+     "label": ""
+    },
+    {
+     "id": "e6",
+     "from": "n6",
+     "to": "n7",
+     "label": ""
+    },
+    {
+     "id": "e7",
+     "from": "n7",
+     "to": "n8",
+     "label": ""
+    }
+   ]
+  }
+ ]
+}

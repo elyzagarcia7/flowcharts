@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Company Flowcharts – HLBC · AATBS · SB</title>
+<style>
+:root{--ink:#1c2733;--mut:#6b7785;--line:#d5dce4;--bg:#f4f6f9;--ac:#005EA2;--gold:#C9A961}
+*{box-sizing:border-box}body{margin:0;font:14px/1.4 system-ui,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg);height:100vh;display:flex;flex-direction:column}
+header{background:var(--ac);color:#fff;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--gold)}
+header h1{font-size:16px;margin:0;flex:1}
+button,select{font:inherit;padding:5px 10px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer;color:var(--ink)}
+button:hover{background:#eef3f8}button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+header button{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4)}
+#tabs{display:flex;gap:2px;padding:6px 10px 0;background:#e6ebf1;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab{padding:7px 14px;border-radius:8px 8px 0 0;background:#d6dde6;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab.on{background:#fff;font-weight:600}.tab.add{background:none;font-weight:700;color:var(--ac)}
+#bar{display:none;gap:6px;padding:7px 10px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
+body.edit #bar{display:flex}
+#bar .sep{width:1px;height:22px;background:var(--line)}
+#legend{padding:5px 12px;font-size:12px;color:var(--mut);display:flex;gap:14px;flex-wrap:wrap;background:#fff}
+#legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+#wrap{flex:1;overflow:auto;position:relative}
+#cv{position:relative;width:2600px;height:1800px;background-image:radial-gradient(#cbd3dd 1px,transparent 1px);background-size:22px 22px}
+svg{position:absolute;inset:0;width:100%;height:100%}
+.n{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 10px;border:2px solid;font-size:13px;user-select:none;touch-action:none;background:#fff;cursor:default}
+body.edit .n{cursor:grab}.n.step{width:170px;height:62px;border-radius:8px}
+.n.term{width:150px;height:50px;border-radius:30px}.n.dec{width:170px;height:84px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:0;padding:6px 34px;box-shadow:none}
+.n.sel{outline:3px solid var(--gold);outline-offset:2px}.n.dec.sel{outline:0;filter:drop-shadow(0 0 4px var(--gold)) drop-shadow(0 0 4px var(--gold))}
+.s0{border-color:#9aa5b1;background:#f3f5f7}.s1{border-color:#e0a100;background:#fff4d0}.s2{border-color:#2e9d5b;background:#dcf3e5}.s3{border-color:#d64545;background:#fde0e0}
+.n.dec.s0{background:#dfe4ea}.n.dec.s1{background:#f6dc8c}.n.dec.s2{background:#a9e0c0}.n.dec.s3{background:#f5b3b3}
+.e{stroke:#51606f;stroke-width:2;fill:none}.e.sel{stroke:var(--gold);stroke-width:3.5}.hit{stroke:transparent;stroke-width:14;fill:none}
+body.edit .hit{cursor:pointer}.el{font-size:12px;fill:#334;paint-order:stroke;stroke:#fff;stroke-width:4px}
+#msg{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#1c2733;color:#fff;padding:8px 16px;border-radius:8px;display:none}
+dialog{border:1px solid var(--line);border-radius:10px;max-width:480px;width:92%}dialog label{display:block;margin:8px 0 2px;font-size:12px;color:var(--mut)}dialog input{width:100%;padding:6px;border:1px solid var(--line);border-radius:6px}
+</style></head><body>
+<header><h1>Company Flowcharts <small style="opacity:.8;font-weight:400" id="stamp"></small></h1>
+<button id="bEdit">✏️ Edit</button></header>
+<div id="tabs"></div>
+<div id="bar">
+<button onclick="add('step')">+ Step</button><button onclick="add('dec')">+ Decision</button><button onclick="add('term')">+ Start/End</button>
+<span class="sep"></span><button id="bConn" onclick="connect()">🔗 Connect</button><button onclick="editText()">Edit text</button>
+<select id="st" onchange="setStatus(this.value)" title="Status"><option value="0">Not started</option><option value="1">In progress</option><option value="2">Done</option><option value="3">Blocked</option></select>
+<button onclick="del()">🗑 Delete</button><span class="sep"></span>
+<button onclick="renameTab()">Rename tab</button><button onclick="delTab()">Delete tab</button><span class="sep"></span>
+<button class="p" onclick="save()">💾 Save to GitHub</button><button onclick="$('dlg').showModal()">⚙ Settings</button>
+<button onclick="exp()">Export</button><button onclick="$('imp').click()">Import</button><input type="file" id="imp" accept=".json" hidden>
+</div>
+<div id="legend"><span><i style="background:#9aa5b1"></i>Not started</span><span><i style="background:#e0a100"></i>In progress</span><span><i style="background:#2e9d5b"></i>Done</span><span><i style="background:#d64545"></i>Blocked</span><span id="hint"></span></div>
+<div id="wrap"><div id="cv"><svg id="svg"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#51606f"/></marker></defs><g id="eg"></g></svg></div></div>
+<div id="msg"></div>
+<dialog id="dlg"><h3 style="margin-top:0">GitHub save settings</h3>
+<p style="font-size:12px;color:var(--mut)">Only needed to SAVE. Stored in this browser only. Viewers never need it.</p>
+<label>Owner (GitHub username)</label><input id="co"><label>Repository name</label><input id="cr"><label>Branch</label><input id="cb" value="main">
+<label>Personal access token (fine-grained, this repo, Contents: Read and write)</label><input id="ct" type="password">
+<p style="text-align:right"><button onclick="$('dlg').close()">Cancel</button> <button class="p" onclick="cfgSave()">Save settings</button></p></dialog>
+<script>
+const $=id=>document.getElementById(id),W={step:[170,62],dec:[170,84],term:[150,50]},COL=['#005EA2','#7a4fb5','#d9822b','#2e9d5b','#c0392b','#16899a'];
+let D,cur,sel=null,edit=false,conn=null,dirty=false,N={};
+const uid=()=>Math.random().toString(36).slice(2,9);
+function mk(name,color,steps,extra){const nodes=steps.map((s,i)=>({id:'n'+i,t:s[0],k:s[1]||'step',x:40+(i%5)*215,y:60+Math.floor(i/5)*150,s:0}));
+const edges=[];for(let i=0;i<nodes.length-1;i++)edges.push({id:'e'+i,a:'n'+i,b:'n'+(i+1),l:nodes[i].k=='dec'?'Yes':''});
+(extra||[]).forEach((x,i)=>edges.push({id:'x'+i,a:'n'+x[0],b:'n'+x[1],l:x[2]}));return{id:uid(),name,color,nodes,edges}}
+function defaults(){return{tabs:[
+mk('HLBC','#005EA2',[['Client enquiry','term'],['Fact find / documents'],['Choose lender & product'],['Submit application'],['Approved?','dec'],['Formal approval'],['Settlement'],['Post-settlement follow-up','term']],[[4,2,'No']]),
+mk('AATBS','#C9A961',[['Client enquiry','term'],['Engagement & onboarding'],['Collect documents'],['Prepare work'],['Review OK?','dec'],['Lodge / deliver'],['Invoice'],['Complete','term']],[[4,3,'No']]),
+mk('SB','#2e9d5b',[['Customer enquiry','term'],['Quote'],['Quote accepted?','dec'],['Artwork / specs'],['Place order'],['Production'],['Delivery'],['Invoice & follow-up','term']],[[2,1,'Revise']])]}}
+function toast(t){const m=$('msg');m.textContent=t;m.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>m.style.display='none',3500)}
+const tab=()=>D.tabs.find(t=>t.id==cur)||D.tabs[0];
+function renderTabs(){const T=$('tabs');T.innerHTML='';D.tabs.forEach(t=>{const d=document.createElement('div');d.className='tab'+(t.id==cur?' on':'');d.textContent=t.name;d.style.borderBottomColor=t.id==cur?t.color:'transparent';d.onclick=()=>{cur=t.id;sel=null;conn=null;render()};T.appendChild(d)});
+if(edit){const a=document.createElement('div');a.className='tab add';a.textContent='+ New tab';a.onclick=addTab;T.appendChild(a)}}
+function render(){renderTabs();const t=tab();cur=t.id;document.querySelectorAll('.n').forEach(e=>e.remove());N={};
+t.nodes.forEach(n=>{const e=document.createElement('div');e.className=`n ${n.k} s${n.s}`+(sel&&sel.k=='n'&&sel.id==n.id?' sel':'');e.textContent=n.t;e.style.left=n.x+'px';e.style.top=n.y+'px';N[n.id]=e;$('cv').appendChild(e);
+e.onpointerdown=ev=>down(ev,n);e.ondblclick=()=>{if(edit){sel={k:'n',id:n.id};editText()}}});
+edges();$('hint').textContent=edit?(conn?'Click the node to connect TO…':'Click an item to select · drag to move · double-click to edit text'):'View mode – click ✏️ Edit to change';
+$('bConn').classList.toggle('p',!!conn);if(sel&&sel.k=='n')$('st').value=t.nodes.find(n=>n.id==sel.id)?.s||0}
+function pt(n,tx,ty){const [w,h]=W[n.k],cx=n.x+w/2,cy=n.y+h/2,dx=tx-cx,dy=ty-cy;if(!dx&&!dy)return[cx,cy];
+const s=n.k=='dec'?1/(Math.abs(dx)/(w/2)+Math.abs(dy)/(h/2)):Math.min((w/2)/Math.abs(dx||1e-9),(h/2)/Math.abs(dy||1e-9));return[cx+dx*s,cy+dy*s]}
+function edges(){const t=tab(),g=$('eg');g.innerHTML='';const by=Object.fromEntries(t.nodes.map(n=>[n.id,n]));
+t.edges.forEach(ed=>{const a=by[ed.a],b=by[ed.b];if(!a||!b)return;const ca=[a.x+W[a.k][0]/2,a.y+W[a.k][1]/2],cb=[b.x+W[b.k][0]/2,b.y+W[b.k][1]/2];
+const p=pt(a,cb[0],cb[1]),q=pt(b,ca[0],ca[1]),isel=sel&&sel.k=='e'&&sel.id==ed.id;
+g.insertAdjacentHTML('beforeend',`<g data-e="${ed.id}"><line class="hit" x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}"/><line class="e${isel?' sel':''}" x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" marker-end="url(#ar)"/>${ed.l?`<text class="el" x="${(p[0]+q[0])/2}" y="${(p[1]+q[1])/2-5}" text-anchor="middle">${esc(ed.l)}</text>`:''}</g>`)});
+g.querySelectorAll('g').forEach(x=>x.onclick=ev=>{if(!edit)return;sel={k:'e',id:x.dataset.e};render()})}
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function down(ev,n){if(!edit)return;ev.preventDefault();
+if(conn&&conn!=n.id){const t=tab();if(!t.edges.some(e=>e.a==conn&&e.b==n.id)){t.edges.push({id:uid(),a:conn,b:n.id,l:''});mark()}conn=null;sel={k:'n',id:n.id};render();return}
+sel={k:'n',id:n.id};const sx=ev.clientX,sy=ev.clientY,ox=n.x,oy=n.y;let moved=false;const el=N[n.id];
+document.querySelectorAll('.n.sel').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');$('st').value=n.s;
+const mv=e=>{moved=true;n.x=Math.max(0,Math.round((ox+e.clientX-sx)/10)*10);n.y=Math.max(0,Math.round((oy+e.clientY-sy)/10)*10);el.style.left=n.x+'px';el.style.top=n.y+'px';edges()};
+const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);if(moved)mark();render()};addEventListener('pointermove',mv);addEventListener('pointerup',up)}
+function mark(){dirty=true;try{localStorage.setItem('fc_draft',JSON.stringify(D))}catch(e){}}
+function add(k){const t=tab(),w=$('wrap');t.nodes.push({id:uid(),t:k=='dec'?'Decision?':k=='term'?'Start / End':'New step',k,x:Math.round((w.scrollLeft+60)/10)*10+Math.floor(Math.random()*6)*20,y:Math.round((w.scrollTop+60)/10)*10+Math.floor(Math.random()*4)*20,s:0});sel={k:'n',id:t.nodes.at(-1).id};mark();render()}
+function connect(){if(!sel||sel.k!='n')return toast('Select the starting item first');conn=sel.id;render()}
+function editText(){if(!sel)return toast('Select an item or arrow first');const t=tab();
+if(sel.k=='n'){const n=t.nodes.find(x=>x.id==sel.id),v=prompt('Item text:',n.t);if(v!==null){n.t=v;mark();render()}}
+else{const e=t.edges.find(x=>x.id==sel.id),v=prompt('Arrow label (blank for none):',e.l);if(v!==null){e.l=v;mark();render()}}}
+function setStatus(v){if(sel&&sel.k=='n'){tab().nodes.find(n=>n.id==sel.id).s=+v;mark();render()}}
+function del(){if(!sel)return toast('Select an item or arrow first');const t=tab();
+if(sel.k=='n'){t.nodes=t.nodes.filter(n=>n.id!=sel.id);t.edges=t.edges.filter(e=>e.a!=sel.id&&e.b!=sel.id)}else t.edges=t.edges.filter(e=>e.id!=sel.id);sel=null;mark();render()}
+function addTab(){const n=prompt('Name of the new flowchart tab:');if(!n)return;const t={id:uid(),name:n,color:COL[D.tabs.length%COL.length],nodes:[{id:'a',t:'Start',k:'term',x:60,y:60,s:0}],edges:[]};D.tabs.push(t);cur=t.id;sel=null;mark();render()}
+function renameTab(){const t=tab(),n=prompt('Tab name:',t.name);if(n){t.name=n;mark();render()}}
+function delTab(){if(D.tabs.length<2)return toast('Keep at least one tab');if(confirm('Delete tab "'+tab().name+'" and its flowchart?')){D.tabs=D.tabs.filter(t=>t.id!=cur);cur=D.tabs[0].id;sel=null;mark();render()}}
+$('bEdit').onclick=()=>{edit=!edit;document.body.classList.toggle('edit',edit);$('bEdit').textContent=edit?'👁 View mode':'✏️ Edit';sel=null;conn=null;render()};
+document.addEventListener('keydown',e=>{if(edit&&(e.key=='Delete')&&sel&&!/INPUT|SELECT/.test(e.target.tagName))del()});
+function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,1)],{type:'application/json'}));a.download='flowcharts.json';a.click()}
+$('imp').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(x=>{try{const d=JSON.parse(x);if(!d.tabs)throw 0;D=d;cur=D.tabs[0].id;mark();render();toast('Imported – remember to Save')}catch(_){toast('Not a valid flowcharts.json')}})};
+function cfg(){let c={};try{c=JSON.parse(localStorage.getItem('fc_cfg')||'{}')}catch(e){}
+if(!c.o&&location.hostname.endsWith('.github.io')){c.o=location.hostname.split('.')[0];c.r=location.pathname.split('/')[1]||c.o+'.github.io'}c.b=c.b||'main';return c}
+$('dlg').addEventListener('close',()=>{});$('dlg').addEventListener('click',()=>{});
+document.getElementById('bEdit').addEventListener('click',()=>{const c=cfg();$('co').value=c.o||'';$('cr').value=c.r||'';$('cb').value=c.b||'main';$('ct').value=c.t||''});
+function cfgSave(){localStorage.setItem('fc_cfg',JSON.stringify({o:$('co').value.trim(),r:$('cr').value.trim(),b:$('cb').value.trim()||'main',t:$('ct').value.trim()}));$('dlg').close();toast('Settings saved')}
+async function save(){const c=cfg();if(!c.o||!c.r||!c.t){const x=cfg();$('co').value=x.o||'';$('cr').value=x.r||'';$('cb').value=x.b;$('ct').value=x.t||'';$('dlg').showModal();return toast('Add your GitHub details and token first')}
+const u=`https://api.github.com/repos/${c.o}/${c.r}/contents/flowcharts.json`,H={Authorization:'Bearer '+c.t,Accept:'application/vnd.github+json'};
+try{D.updated=new Date().toISOString();let sha;const g=await fetch(u+'?ref='+c.b,{headers:H});if(g.ok)sha=(await g.json()).sha;else if(g.status!=404)throw new Error('Check token/repo ('+g.status+')');
+const r=await fetch(u,{method:'PUT',headers:H,body:JSON.stringify({message:'Update flowcharts',branch:c.b,sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(D,null,1))))})});
+if(!r.ok)throw new Error('GitHub refused the save ('+r.status+'). Token needs Contents: Read and write.');dirty=false;localStorage.removeItem('fc_draft');stamp();toast('Saved ✔ – live in about a minute')}catch(e){toast('Save failed: '+e.message)}}
+function stamp(){$('stamp').textContent=D.updated?'· updated '+new Date(D.updated).toLocaleString():''}
+addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
+(async()=>{try{const r=await fetch('flowcharts.json?'+Date.now());D=r.ok?await r.json():defaults()}catch(e){D=defaults()}
+try{const d=localStorage.getItem('fc_draft');if(d&&confirm('You have unsaved changes from earlier on this device. Restore them?')){D=JSON.parse(d);dirty=true}else localStorage.removeItem('fc_draft')}catch(e){}
+cur=D.tabs[0].id;stamp();render()})();
+</script></body></html>

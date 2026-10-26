@@ -177,7 +177,7 @@
 {
 "id": "n4",
 "type": "process",
-"text": "Edit the website",
+"text": "Website",
 "s": 0,
 "w": 210,
 "h": 80,
@@ -334,6 +334,79 @@
 "w": 210,
 "h": 80,
 "note": "to be approved by abby"
+},
+{
+"id": "aatbs-gsc",
+"type": "process",
+"text": "Google Search Console",
+"s": 1,
+"w": 230,
+"h": 80,
+"x": 760,
+"y": 620,
+"note": "Techants integration in progress."
+},
+{
+"id": "aatbs-smsf-relaunch",
+"type": "process",
+"text": "Stop SMSF advert and relaunch",
+"s": 0,
+"w": 230,
+"h": 80,
+"x": 410,
+"y": 1880
+},
+{
+"id": "aatbs-social",
+"type": "process",
+"text": "Social media",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 410,
+"y": 2020
+},
+{
+"id": "aatbs-instagram-boost",
+"type": "process",
+"text": "Instagram boosting",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 760,
+"y": 2020
+},
+{
+"id": "aatbs-lead-magnet",
+"type": "process",
+"text": "Lead magnet",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 410,
+"y": 2200
+},
+{
+"id": "aatbs-booklets",
+"type": "process",
+"text": "Booklets",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 760,
+"y": 2140,
+"note": "Find out whether the resources are obtained from an existing platform or created in-house. Potential clients may have little reason to download resources that are already available elsewhere. Prioritise creating original, unique resources that cannot be found on other websites."
+},
+{
+"id": "aatbs-quizzes",
+"type": "process",
+"text": "Quizzes",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 760,
+"y": 2280,
+"note": "Reference links:\nhttps://[www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator](http://www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator)"
 }
 ],
 "edges": [
@@ -449,6 +522,48 @@
 "id": "z4zz9zd",
 "from": "n1",
 "to": "6gd9ymg",
+"label": ""
+},
+{
+"id": "aatbs-gsc-edge",
+"from": "n4",
+"to": "aatbs-gsc",
+"label": ""
+},
+{
+"id": "aatbs-smsf-edge",
+"from": "n0",
+"to": "aatbs-smsf-relaunch",
+"label": ""
+},
+{
+"id": "aatbs-social-edge",
+"from": "n0",
+"to": "aatbs-social",
+"label": ""
+},
+{
+"id": "aatbs-instagram-edge",
+"from": "aatbs-social",
+"to": "aatbs-instagram-boost",
+"label": ""
+},
+{
+"id": "aatbs-lead-magnet-edge",
+"from": "n0",
+"to": "aatbs-lead-magnet",
+"label": ""
+},
+{
+"id": "aatbs-booklets-edge",
+"from": "aatbs-lead-magnet",
+"to": "aatbs-booklets",
+"label": ""
+},
+{
+"id": "aatbs-quizzes-edge",
+"from": "aatbs-lead-magnet",
+"to": "aatbs-quizzes",
 "label": ""
 }
 ]
@@ -623,5 +738,5 @@
 ]
 }
 ],
-"updated": "2026-10-26T07:00:49.000Z"
+"updated": "2026-10-26T07:27:29.000Z"
 }

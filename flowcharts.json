@@ -71,10 +71,11 @@
 "type": "process",
 "x": 420,
 "y": 400,
-"text": "Step",
+"text": "SMSF EasyRefi",
 "s": 0,
 "w": 210,
-"h": 80
+"h": 80,
+"note": "Abby says this is one of the products that can be used to refinance SMSF loans. Do not mention the bank; only mention EasyRefi. The marketing angle is for people who may be paying too high an interest rate."
 },
 {
 "id": "n6",
@@ -584,7 +585,42 @@
 "label": ""
 }
 ]
+},
+{
+"id": "terracap",
+"name": "TERRACAP",
+"dir": "LR",
+"nodes": [
+{
+"id": "tc0",
+"type": "start",
+"text": "Brand Establishment",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 75,
+"y": 170
+},
+{
+"id": "tc1",
+"type": "process",
+"text": "Brand Foundation Decisions",
+"s": 0,
+"w": 230,
+"h": 80,
+"x": 410,
+"y": 170
 }
 ],
-"updated": "2026-10-26T02:43:53.000Z"
+"edges": [
+{
+"id": "tc-e0",
+"from": "tc0",
+"to": "tc1",
+"label": ""
+}
+]
+}
+],
+"updated": "2026-10-26T04:29:32.000Z"
 }

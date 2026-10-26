@@ -87,6 +87,38 @@
 "h": 80,
 "x": 410,
 "y": 560
+},
+{
+"id": "hlbc-lead-magnet",
+"type": "process",
+"text": "Lead magnet",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 410,
+"y": 740
+},
+{
+"id": "hlbc-booklets",
+"type": "process",
+"text": "Booklets",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 760,
+"y": 680,
+"note": "Find out whether the resources are obtained from an existing platform or created in-house. Potential clients may have little reason to download resources that are already available elsewhere. Prioritise creating original, unique resources that cannot be found on other websites."
+},
+{
+"id": "hlbc-quizzes",
+"type": "process",
+"text": "Quizzes",
+"s": 0,
+"w": 210,
+"h": 80,
+"x": 760,
+"y": 820,
+"note": "Reference links:\nhttps://[www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator\nhttps://bkangels.com.au/health-check-quiz/\nhttps://www.accurateaccountingprofessionals.com/quizzies\nhttps://maxtaxpro.com.au/blog/tax-time-quiz.html\nhttps://www.scalesuite.com.au/tools/ato-compliance-health-check](http://www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator\nhttps://bkangels.com.au/health-check-quiz/\nhttps://www.accurateaccountingprofessionals.com/quizzies\nhttps://maxtaxpro.com.au/blog/tax-time-quiz.html\nhttps://www.scalesuite.com.au/tools/ato-compliance-health-check)"
 }
 ],
 "edges": [
@@ -124,6 +156,24 @@
 "id": "e5",
 "from": "n0",
 "to": "n6",
+"label": ""
+},
+{
+"id": "hlbc-lead-magnet-edge",
+"from": "n0",
+"to": "hlbc-lead-magnet",
+"label": ""
+},
+{
+"id": "hlbc-booklets-edge",
+"from": "hlbc-lead-magnet",
+"to": "hlbc-booklets",
+"label": ""
+},
+{
+"id": "hlbc-quizzes-edge",
+"from": "hlbc-lead-magnet",
+"to": "hlbc-quizzes",
 "label": ""
 }
 ]
@@ -406,7 +456,7 @@
 "h": 80,
 "x": 760,
 "y": 2280,
-"note": "Reference links:\nhttps://[www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator](http://www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator)"
+"note": "Reference links:\nhttps://[www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator\nhttps://bkangels.com.au/health-check-quiz/\nhttps://www.accurateaccountingprofessionals.com/quizzies\nhttps://maxtaxpro.com.au/blog/tax-time-quiz.html\nhttps://www.scalesuite.com.au/tools/ato-compliance-health-check](http://www.listonnewton.com.au/brochure-download/tax-minimisation\nhttps://moneysmart.gov.au/work-and-tax/income-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/tax-return-simple-tax-calculator\nhttps://www.ato.gov.au/calculators-and-tools/income-tax-estimator\nhttps://www.ato.gov.au/calculators-and-tools/income-gross-pay-estimator\nhttps://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator\nhttps://bkangels.com.au/health-check-quiz/\nhttps://www.accurateaccountingprofessionals.com/quizzies\nhttps://maxtaxpro.com.au/blog/tax-time-quiz.html\nhttps://www.scalesuite.com.au/tools/ato-compliance-health-check)"
 }
 ],
 "edges": [
@@ -738,5 +788,5 @@
 ]
 }
 ],
-"updated": "2026-10-26T07:27:29.000Z"
+"updated": "2026-10-26T07:46:38.000Z"
 }

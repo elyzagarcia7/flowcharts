@@ -14,7 +14,7 @@
           "w": 180,
           "h": 64,
           "x": 60,
-          "y": 428
+          "y": 498
         },
         {
           "id": "n1",
@@ -69,8 +69,8 @@
         {
           "id": "5indaop",
           "type": "process",
-          "x": 60,
-          "y": 980,
+          "x": 460,
+          "y": 500,
           "text": "SMSF EasyRefi",
           "s": 0,
           "w": 210,
@@ -86,7 +86,7 @@
           "w": 210,
           "h": 80,
           "x": 460,
-          "y": 500
+          "y": 640
         },
         {
           "id": "hlbc-lead-magnet",
@@ -96,7 +96,7 @@
           "w": 210,
           "h": 80,
           "x": 460,
-          "y": 710
+          "y": 850
         },
         {
           "id": "hlbc-booklets",
@@ -106,7 +106,7 @@
           "w": 210,
           "h": 80,
           "x": 860,
-          "y": 640,
+          "y": 780,
           "note": "Find out whether the resources are obtained from an existing platform or created in-house. Potential clients may have little reason to download resources that are already available elsewhere. Prioritise creating original, unique resources that cannot be found on other websites."
         },
         {
@@ -117,7 +117,7 @@
           "w": 210,
           "h": 80,
           "x": 860,
-          "y": 780,
+          "y": 920,
           "note": "Reference links:\nhttps://bkangels.com.au/health-check-quiz/\nhttps://www.accurateaccountingprofessionals.com/quizzies\nhttps://maxtaxpro.com.au/blog/tax-time-quiz.html\nhttps://www.scalesuite.com.au/tools/ato-compliance-health-check"
         }
       ],
@@ -150,6 +150,12 @@
           "id": "e4",
           "from": "n3",
           "to": "n5",
+          "label": ""
+        },
+        {
+          "id": "hlbc-smsf-easyrefi-edge",
+          "from": "n0",
+          "to": "5indaop",
           "label": ""
         },
         {

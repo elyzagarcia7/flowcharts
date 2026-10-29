@@ -190,39 +190,39 @@
           "s": 0,
           "w": 180,
           "h": 100,
-          "x": 80,
-          "y": 770
+          "x": 40,
+          "y": 740
         },
         {
           "id": "n1",
           "type": "process",
-          "text": "Medical accounting outreach",
+          "text": "Medical Accounting Outreach",
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 150,
-          "y": 110
+          "x": 330,
+          "y": 40
         },
         {
           "id": "n2",
           "type": "process",
-          "text": "Medical accounting landing page",
+          "text": "Medical Accounting Landing Page",
           "s": 1,
           "w": 210,
           "h": 80,
-          "x": 760,
-          "y": 60
+          "x": 620,
+          "y": 10
         },
         {
           "id": "n3",
           "type": "process",
-          "text": "Medical accounting email sequence",
+          "text": "Medical Accounting Email Sequence",
           "s": 1,
           "w": 210,
           "h": 80,
-          "x": 760,
-          "y": 190,
-          "note": "Revision in progress, sent to abby"
+          "x": 620,
+          "y": 100,
+          "note": "Revision in progress. Sent to Abby."
         },
         {
           "id": "n4",
@@ -231,58 +231,244 @@
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 410,
-          "y": 440
+          "x": 330,
+          "y": 260
         },
         {
           "id": "n5",
           "type": "process",
-          "text": "Edit keywords",
+          "text": "Edit Keywords",
           "s": 1,
           "w": 210,
           "h": 80,
-          "x": 760,
-          "y": 370
+          "x": 620,
+          "y": 200
         },
         {
           "id": "n6",
           "type": "process",
-          "text": "Edit page titles",
+          "text": "Edit Page Titles",
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 760,
-          "y": 500
+          "x": 620,
+          "y": 290
+        },
+        {
+          "id": "aatbs-gsc",
+          "type": "process",
+          "text": "Google Search Console",
+          "s": 1,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 380,
+          "note": "Editing in progress. Construction page finished."
+        },
+        {
+          "id": "aatbs-smsf-landing-page",
+          "type": "process",
+          "text": "SMSF Landing Page Updated",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 470
+        },
+        {
+          "id": "aatbs-construction-page",
+          "type": "process",
+          "text": "Construction Page Updated",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 560
+        },
+        {
+          "id": "aatbs-lead-magnet",
+          "type": "process",
+          "text": "Lead Magnets",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 650
+        },
+        {
+          "id": "aatbs-booklets",
+          "type": "process",
+          "text": "Booklets",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 630,
+          "note": "Samples sent to Abby. AATBS creates its own booklets. Use the existing booklets as references."
+        },
+        {
+          "id": "aatbs-quizzes",
+          "type": "process",
+          "text": "Quizzes",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 720,
+          "note": "Samples sent to Abby. AATBS creates its own quizzes. Use the existing quizzes as references."
+        },
+        {
+          "id": "aatbs-lead-generation",
+          "type": "process",
+          "text": "Lead Generation",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 810
+        },
+        {
+          "id": "aatbs-construction-companies-list",
+          "type": "process",
+          "text": "Construction Companies List",
+          "s": 0,
+          "w": 230,
+          "h": 80,
+          "x": 620,
+          "y": 810,
+          "note": "Find out how we can find construction companies."
         },
         {
           "id": "n7",
           "type": "process",
-          "text": "Backlinking (SEO)",
+          "text": "SEO & Backlinking",
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 450,
-          "y": 720
+          "x": 330,
+          "y": 970
+        },
+        {
+          "id": "aatbs-research-keywords",
+          "type": "process",
+          "text": "Keyword Research",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 940,
+          "note": "Find out what other people search for."
         },
         {
           "id": "n8",
           "type": "process",
-          "text": "Reach out to listings",
+          "text": "Reach Out to Relevant Listings",
           "s": 1,
           "w": 210,
           "h": 80,
-          "x": 750,
-          "y": 720
+          "x": 620,
+          "y": 1030
+        },
+        {
+          "id": "n13",
+          "type": "process",
+          "text": "Website Fixes & Checks",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 1150
+        },
+        {
+          "id": "n14",
+          "type": "process",
+          "text": "Fix Uplift Integration",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1080
+        },
+        {
+          "id": "n15",
+          "type": "process",
+          "text": "Check Integration",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1170
+        },
+        {
+          "id": "n16",
+          "type": "process",
+          "text": "Review ISR Settings",
+          "s": 2,
+          "w": 210,
+          "h": 100,
+          "x": 620,
+          "y": 1260
+        },
+        {
+          "id": "n18",
+          "type": "process",
+          "text": "Send Form Submissions to Abby",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1350
+        },
+        {
+          "id": "aatbs-social",
+          "type": "process",
+          "text": "Social Media",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 1470
+        },
+        {
+          "id": "6gd9ymg",
+          "type": "process",
+          "text": "Social Media Post",
+          "s": 1,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1430,
+          "note": "To be approved by Abby."
+        },
+        {
+          "id": "aatbs-instagram-boost",
+          "type": "process",
+          "text": "Instagram Boosting",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1520
+        },
+        {
+          "id": "aatbs-smsf-relaunch",
+          "type": "process",
+          "text": "Stop SMSF Advert and Relaunch",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 1630
         },
         {
           "id": "n9",
           "type": "process",
-          "text": "Proposed additions (not approved yet)",
+          "text": "Proposed Lead Magnets",
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 1200,
-          "y": 990,
+          "x": 330,
+          "y": 1750,
           "note": "Proposed ideas only. Not approved yet."
         },
         {
@@ -292,8 +478,8 @@
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 1550,
-          "y": 860
+          "x": 620,
+          "y": 1700
         },
         {
           "id": "n11",
@@ -302,163 +488,18 @@
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 1550,
-          "y": 990
+          "x": 620,
+          "y": 1790
         },
         {
           "id": "n12",
           "type": "process",
-          "text": "Quiz (email sign-up)",
+          "text": "Quiz (Email Sign-Up)",
           "s": 0,
           "w": 210,
           "h": 80,
-          "x": 1550,
-          "y": 1120
-        },
-        {
-          "id": "n13",
-          "type": "process",
-          "text": "Fixes and checks",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 340,
-          "y": 1000
-        },
-        {
-          "id": "n14",
-          "type": "process",
-          "text": "Fix the uplift",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 520,
-          "y": 1160
-        },
-        {
-          "id": "n15",
-          "type": "process",
-          "text": "Check the integration",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 810,
-          "y": 1200
-        },
-        {
-          "id": "n16",
-          "type": "process",
-          "text": "Check ISR settings (recently edited to optimise usage)",
-          "s": 2,
-          "w": 210,
-          "h": 100,
-          "x": 810,
-          "y": 1070
-        },
-        {
-          "id": "n18",
-          "type": "process",
-          "text": "Also send form submissions to Abby ",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 770,
-          "y": 1300
-        },
-        {
-          "id": "6gd9ymg",
-          "type": "process",
-          "x": 760,
-          "y": -40,
-          "text": "Social media post",
-          "s": 1,
-          "w": 210,
-          "h": 80,
-          "note": "to be approved by abby"
-        },
-        {
-          "id": "aatbs-gsc",
-          "type": "process",
-          "text": "Google Search Console",
-          "s": 1,
-          "w": 210,
-          "h": 80,
-          "x": 760,
-          "y": 620,
-          "note": "Techants integration in progress."
-        },
-        {
-          "id": "aatbs-smsf-relaunch",
-          "type": "process",
-          "text": "Stop SMSF advert and relaunch",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 270,
+          "x": 620,
           "y": 1880
-        },
-        {
-          "id": "aatbs-social",
-          "type": "process",
-          "text": "Social media",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 140,
-          "y": 2050
-        },
-        {
-          "id": "aatbs-instagram-boost",
-          "type": "process",
-          "text": "Instagram boosting",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 760,
-          "y": 2020
-        },
-        {
-          "id": "aatbs-lead-magnet",
-          "type": "process",
-          "text": "Lead magnet",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 430,
-          "y": 870
-        },
-        {
-          "id": "aatbs-booklets",
-          "type": "process",
-          "text": "Booklets",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 740,
-          "y": 820,
-          "note": "Find out whether the resources are obtained from an existing platform or created in-house. Potential clients may have little reason to download resources that are already available elsewhere. Prioritise creating original, unique resources that cannot be found on other websites."
-        },
-        {
-          "id": "aatbs-quizzes",
-          "type": "process",
-          "text": "Quizzes",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 770,
-          "y": 950,
-          "note": "Reference links:\nhttps://bkangels.com.au/health-check-quiz/\nhttps://www.accurateaccountingprofessionals.com/quizzies\nhttps://maxtaxpro.com.au/blog/tax-time-quiz.html\nhttps://www.scalesuite.com.au/tools/ato-compliance-health-check"
-        },
-        {
-          "id": "aatbs-research-keywords",
-          "type": "process",
-          "text": "Research keywords",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 410,
-          "y": 560,
-          "note": "Find out what other people search for."
         }
       ],
       "edges": [
@@ -499,15 +540,129 @@
           "label": ""
         },
         {
+          "id": "aatbs-gsc-edge",
+          "from": "n4",
+          "to": "aatbs-gsc",
+          "label": ""
+        },
+        {
+          "id": "aatbs-smsf-page-edge",
+          "from": "n4",
+          "to": "aatbs-smsf-landing-page",
+          "label": ""
+        },
+        {
+          "id": "aatbs-construction-page-edge",
+          "from": "n4",
+          "to": "aatbs-construction-page",
+          "label": ""
+        },
+        {
+          "id": "83gmoc0",
+          "from": "n0",
+          "to": "aatbs-lead-magnet",
+          "label": ""
+        },
+        {
+          "id": "aatbs-booklets-edge",
+          "from": "aatbs-lead-magnet",
+          "to": "aatbs-booklets",
+          "label": ""
+        },
+        {
+          "id": "aatbs-quizzes-edge",
+          "from": "aatbs-lead-magnet",
+          "to": "aatbs-quizzes",
+          "label": ""
+        },
+        {
+          "id": "aatbs-lead-generation-edge",
+          "from": "n0",
+          "to": "aatbs-lead-generation",
+          "label": ""
+        },
+        {
+          "id": "aatbs-construction-companies-list-edge",
+          "from": "aatbs-lead-generation",
+          "to": "aatbs-construction-companies-list",
+          "label": ""
+        },
+        {
           "id": "e6",
           "from": "n0",
           "to": "n7",
           "label": ""
         },
         {
+          "id": "aatbs-keyword-research-edge",
+          "from": "n7",
+          "to": "aatbs-research-keywords",
+          "label": ""
+        },
+        {
           "id": "e7",
           "from": "n7",
           "to": "n8",
+          "label": ""
+        },
+        {
+          "id": "e12",
+          "from": "n0",
+          "to": "n13",
+          "label": ""
+        },
+        {
+          "id": "e13",
+          "from": "n13",
+          "to": "n14",
+          "label": ""
+        },
+        {
+          "id": "e14",
+          "from": "n13",
+          "to": "n15",
+          "label": ""
+        },
+        {
+          "id": "e15",
+          "from": "n13",
+          "to": "n16",
+          "label": ""
+        },
+        {
+          "id": "aatbs-form-fixes-edge",
+          "from": "n13",
+          "to": "n18",
+          "label": ""
+        },
+        {
+          "id": "aatbs-social-edge",
+          "from": "n0",
+          "to": "aatbs-social",
+          "label": ""
+        },
+        {
+          "id": "aatbs-social-post-edge",
+          "from": "aatbs-social",
+          "to": "6gd9ymg",
+          "label": ""
+        },
+        {
+          "id": "aatbs-instagram-edge",
+          "from": "aatbs-social",
+          "to": "aatbs-instagram-boost",
+          "label": ""
+        },
+        {
+          "id": "aatbs-smsf-edge",
+          "from": "n0",
+          "to": "aatbs-smsf-relaunch",
+          "label": ""
+        },
+        {
+          "id": "aatbs-proposed-lead-magnets-edge",
+          "from": "n0",
+          "to": "n9",
           "label": ""
         },
         {
@@ -526,90 +681,6 @@
           "id": "e11",
           "from": "n9",
           "to": "n12",
-          "label": ""
-        },
-        {
-          "id": "e12",
-          "from": "n0",
-          "to": "n13",
-          "label": ""
-        },
-        {
-          "id": "e15",
-          "from": "n13",
-          "to": "n16",
-          "label": ""
-        },
-        {
-          "id": "e13",
-          "from": "n13",
-          "to": "n14",
-          "label": ""
-        },
-        {
-          "id": "e14",
-          "from": "n13",
-          "to": "n15",
-          "label": ""
-        },
-        {
-          "id": "z4zz9zd",
-          "from": "n1",
-          "to": "6gd9ymg",
-          "label": ""
-        },
-        {
-          "id": "aatbs-gsc-edge",
-          "from": "n4",
-          "to": "aatbs-gsc",
-          "label": ""
-        },
-        {
-          "id": "aatbs-smsf-edge",
-          "from": "n0",
-          "to": "aatbs-smsf-relaunch",
-          "label": ""
-        },
-        {
-          "id": "aatbs-social-edge",
-          "from": "n0",
-          "to": "aatbs-social",
-          "label": ""
-        },
-        {
-          "id": "aatbs-instagram-edge",
-          "from": "aatbs-social",
-          "to": "aatbs-instagram-boost",
-          "label": ""
-        },
-        {
-          "id": "aatbs-booklets-edge",
-          "from": "aatbs-lead-magnet",
-          "to": "aatbs-booklets",
-          "label": ""
-        },
-        {
-          "id": "aatbs-quizzes-edge",
-          "from": "aatbs-lead-magnet",
-          "to": "aatbs-quizzes",
-          "label": ""
-        },
-        {
-          "id": "aatbs-form-fixes-edge",
-          "from": "n13",
-          "to": "n18",
-          "label": ""
-        },
-        {
-          "id": "83gmoc0",
-          "from": "n0",
-          "to": "aatbs-lead-magnet",
-          "label": ""
-        },
-        {
-          "id": "aatbs-research-keywords-edge",
-          "from": "n0",
-          "to": "aatbs-research-keywords",
           "label": ""
         }
       ]
@@ -784,5 +855,5 @@
       ]
     }
   ],
-  "updated": "2026-10-27T00:52:34.000Z"
+  "updated": "2026-10-29T05:44:40.000Z"
 }

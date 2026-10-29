@@ -196,7 +196,7 @@
         {
           "id": "n1",
           "type": "process",
-          "text": "Medical Accounting Outreach",
+          "text": "Medical accounting outreach",
           "s": 0,
           "w": 210,
           "h": 80,
@@ -222,7 +222,7 @@
           "h": 80,
           "x": 620,
           "y": 100,
-          "note": "Revision in progress. Sent to Abby."
+          "note": "Revision in progress, sent to abby"
         },
         {
           "id": "n4",
@@ -237,7 +237,7 @@
         {
           "id": "n5",
           "type": "process",
-          "text": "Edit Keywords",
+          "text": "Edit keywords",
           "s": 1,
           "w": 210,
           "h": 80,
@@ -247,96 +247,12 @@
         {
           "id": "n6",
           "type": "process",
-          "text": "Edit Page Titles",
+          "text": "Edit page titles",
           "s": 0,
           "w": 210,
           "h": 80,
           "x": 620,
           "y": 290
-        },
-        {
-          "id": "aatbs-gsc",
-          "type": "process",
-          "text": "Google Search Console",
-          "s": 1,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 380,
-          "note": "Editing in progress. Construction page finished."
-        },
-        {
-          "id": "aatbs-smsf-landing-page",
-          "type": "process",
-          "text": "SMSF Landing Page Updated",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 470
-        },
-        {
-          "id": "aatbs-construction-page",
-          "type": "process",
-          "text": "Construction Page Updated",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 560
-        },
-        {
-          "id": "aatbs-lead-magnet",
-          "type": "process",
-          "text": "Lead Magnets",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 330,
-          "y": 650
-        },
-        {
-          "id": "aatbs-booklets",
-          "type": "process",
-          "text": "Booklets",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 630,
-          "note": "Samples sent to Abby. AATBS creates its own booklets. Use the existing booklets as references."
-        },
-        {
-          "id": "aatbs-quizzes",
-          "type": "process",
-          "text": "Quizzes",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 720,
-          "note": "Samples sent to Abby. AATBS creates its own quizzes. Use the existing quizzes as references."
-        },
-        {
-          "id": "aatbs-lead-generation",
-          "type": "process",
-          "text": "Lead Generation",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 330,
-          "y": 810
-        },
-        {
-          "id": "aatbs-construction-companies-list",
-          "type": "process",
-          "text": "Construction Companies List",
-          "s": 0,
-          "w": 230,
-          "h": 80,
-          "x": 620,
-          "y": 810,
-          "note": "Find out how we can find construction companies."
         },
         {
           "id": "n7",
@@ -349,17 +265,6 @@
           "y": 970
         },
         {
-          "id": "aatbs-research-keywords",
-          "type": "process",
-          "text": "Keyword Research",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 940,
-          "note": "Find out what other people search for."
-        },
-        {
           "id": "n8",
           "type": "process",
           "text": "Reach Out to Relevant Listings",
@@ -368,97 +273,6 @@
           "h": 80,
           "x": 620,
           "y": 1030
-        },
-        {
-          "id": "n13",
-          "type": "process",
-          "text": "Website Fixes & Checks",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 330,
-          "y": 1150
-        },
-        {
-          "id": "n14",
-          "type": "process",
-          "text": "Fix Uplift Integration",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 1080
-        },
-        {
-          "id": "n15",
-          "type": "process",
-          "text": "Check Integration",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 1170
-        },
-        {
-          "id": "n16",
-          "type": "process",
-          "text": "Review ISR Settings",
-          "s": 2,
-          "w": 210,
-          "h": 100,
-          "x": 620,
-          "y": 1260
-        },
-        {
-          "id": "n18",
-          "type": "process",
-          "text": "Send Form Submissions to Abby",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 1350
-        },
-        {
-          "id": "aatbs-social",
-          "type": "process",
-          "text": "Social Media",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 330,
-          "y": 1470
-        },
-        {
-          "id": "6gd9ymg",
-          "type": "process",
-          "text": "Social Media Post",
-          "s": 1,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 1430,
-          "note": "To be approved by Abby."
-        },
-        {
-          "id": "aatbs-instagram-boost",
-          "type": "process",
-          "text": "Instagram Boosting",
-          "s": 0,
-          "w": 210,
-          "h": 80,
-          "x": 620,
-          "y": 1520
-        },
-        {
-          "id": "aatbs-smsf-relaunch",
-          "type": "process",
-          "text": "Stop SMSF Advert and Relaunch",
-          "s": 2,
-          "w": 210,
-          "h": 80,
-          "x": 330,
-          "y": 1630
         },
         {
           "id": "n9",
@@ -494,12 +308,198 @@
         {
           "id": "n12",
           "type": "process",
-          "text": "Quiz (Email Sign-Up)",
+          "text": "Quiz (email sign-up)",
           "s": 0,
           "w": 210,
           "h": 80,
           "x": 620,
           "y": 1880
+        },
+        {
+          "id": "n13",
+          "type": "process",
+          "text": "Website Fixes & Checks",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 1150
+        },
+        {
+          "id": "n14",
+          "type": "process",
+          "text": "Fix Uplift Integration",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1120
+        },
+        {
+          "id": "n15",
+          "type": "process",
+          "text": "Check Integration",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1210
+        },
+        {
+          "id": "n16",
+          "type": "process",
+          "text": "Review ISR Settings",
+          "s": 2,
+          "w": 210,
+          "h": 100,
+          "x": 620,
+          "y": 1300
+        },
+        {
+          "id": "n18",
+          "type": "process",
+          "text": "Send Form Submissions to Abby",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1410
+        },
+        {
+          "id": "6gd9ymg",
+          "type": "process",
+          "x": 620,
+          "y": 1500,
+          "text": "Social Media Post",
+          "s": 1,
+          "w": 210,
+          "h": 80,
+          "note": "to be approved by abby"
+        },
+        {
+          "id": "aatbs-gsc",
+          "type": "process",
+          "text": "Google Search Console",
+          "s": 1,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 380,
+          "note": "Editing in progress. Construction page finished."
+        },
+        {
+          "id": "aatbs-smsf-relaunch",
+          "type": "process",
+          "text": "Stop SMSF advert and relaunch",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 1630
+        },
+        {
+          "id": "aatbs-social",
+          "type": "process",
+          "text": "Social media",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 1470
+        },
+        {
+          "id": "aatbs-instagram-boost",
+          "type": "process",
+          "text": "Instagram boosting",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 1590
+        },
+        {
+          "id": "aatbs-lead-magnet",
+          "type": "process",
+          "text": "Lead Magnets",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 650
+        },
+        {
+          "id": "aatbs-booklets",
+          "type": "process",
+          "text": "Booklets",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 650,
+          "note": "Samples sent to Abby. AATBS creates its own booklets. Use the existing booklets as references."
+        },
+        {
+          "id": "aatbs-quizzes",
+          "type": "process",
+          "text": "Quizzes",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 740,
+          "note": "Samples sent to Abby. AATBS creates its own quizzes. Use the existing quizzes as references."
+        },
+        {
+          "id": "aatbs-research-keywords",
+          "type": "process",
+          "text": "Keyword Research",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 940,
+          "note": "Find out what other people search for."
+        },
+        {
+          "id": "aatbs-smsf-landing-page",
+          "type": "process",
+          "text": "SMSF Landing Page Updated",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 470
+        },
+        {
+          "id": "aatbs-construction-page",
+          "type": "process",
+          "text": "Construction Page Updated",
+          "s": 2,
+          "w": 210,
+          "h": 80,
+          "x": 620,
+          "y": 560
+        },
+        {
+          "id": "aatbs-lead-generation",
+          "type": "process",
+          "text": "Lead Generation",
+          "s": 0,
+          "w": 210,
+          "h": 80,
+          "x": 330,
+          "y": 810
+        },
+        {
+          "id": "aatbs-construction-companies-list",
+          "type": "process",
+          "text": "Construction Companies List",
+          "s": 0,
+          "w": 230,
+          "h": 80,
+          "x": 620,
+          "y": 830,
+          "note": "Find out how we can find construction companies."
         }
       ],
       "edges": [
@@ -855,5 +855,5 @@
       ]
     }
   ],
-  "updated": "2026-10-29T05:44:40.000Z"
+  "updated": "2026-10-29T05:55:04.000Z"
 }
